@@ -1,21 +1,24 @@
-'use strict';
-
 const mongoose = require('mongoose');
+
 mongoose.Promise = global.Promise;
-const dbURI = 'mongodb://mongo/app-server';
+
+// const docker = 'mongo';
+const local = 'localhost';
+
+const dbURI = `mongodb://${local}/app-server`;
 
 mongoose.connect(dbURI);
 
-mongoose.connection.on('error', function (err) {
-  console.log('Mongoose connection error: ' + err);
+mongoose.connection.on('error', (err) => {
+  console.log(`Mongoose connection error: ${err}`);
 });
 
-mongoose.connection.on('disconnected', function () {
+mongoose.connection.on('disconnected', () => {
   console.log('Mongoose disconnected');
 });
 
-mongoose.connection.on('connected', function () {
-  console.log('Mongoose connected to ' + dbURI);
+mongoose.connection.on('connected', () => {
+  console.log(`Mongoose connected to ${dbURI}`);
   if (process.env.NODE_ENV !== 'production') {
     // seedData();
   }

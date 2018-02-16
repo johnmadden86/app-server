@@ -4,17 +4,17 @@ module.exports = [
   {
     method: 'GET',
     path: '/',
-    handler: function (request, h) { return 'h3llo w0rld'; }
+    handler() { return 'h3llo w0rld'; },
   },
   {
     method: 'GET',
     path: '/users',
-    config: Controller.findAll
+    config: Controller.findAll,
   },
   {
     method: 'POST',
     path: '/users',
-    config: Controller.addNew
+    config: Controller.addNew,
   },
 
 ];

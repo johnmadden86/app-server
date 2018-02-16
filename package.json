@@ -10,9 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "boom": "^7.1.1",
     "hapi": "^17.2.0",
-    "mongoose": "^5.0.5",
-    "boom": "latest"
+    "mongoose": "^5.0.5"
   },
-  "repository": "https://github.com/johnmadden86/app-server.git"
+  "repository": "https://github.com/johnmadden86/app-server.git",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
 }
