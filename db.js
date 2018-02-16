@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-// const docker = 'mongo';
+const docker = 'mongo';
 const local = 'localhost';
 
 const dbURI = `mongodb://${local}/app-server`;
