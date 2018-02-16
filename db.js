@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const dbURI = 'mongodb://localhost/app-server';
+const dbURI = 'mongodb://mongo/app-server';
 
 mongoose.connect(dbURI);
 
