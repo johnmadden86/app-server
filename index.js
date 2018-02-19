@@ -6,7 +6,7 @@ const server = Hapi.server({
   port: 3000,
 });
 
-require('./db');
+require('./api/models/db');
 server.route(require('./routes'));
 
 // Start the server

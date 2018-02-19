@@ -1,100 +1,36 @@
 const HttpSync = require('./http-sync');
 const fixtures = require('./fixtures.json');
 
-const baseUrl = fixtures.tweetService;
+const baseUrl = fixtures.AppService;
 
-class TweetService {
-  constructor(baseUrl) {
+class AppService {
+  constructor() {
     this.httpService = new HttpSync(baseUrl);
   }
 
-  login(user) {
-    return this.httpService.setAuth('/api/users/authenticate', user);
-  }
-
-  logout() {
-    this.httpService.clearAuth();
-  }
-
   createUser(newUser) {
-    return this.httpService.post('/api/users', newUser);
+    return this.httpService.post('/users', newUser);
   }
 
-  createAdmin(newUser) {
-    return this.httpService.post('/api/users/admin', newUser);
+  getOneUser(id) {
+    return this.httpService.get(`/users/${id}`);
   }
 
-  getUser(id) {
-    return this.httpService.get(`/api/users/${id}`);
+  getAllUsers() {
+    return this.httpService.get('/users');
   }
 
-  getUsers() {
-    return this.httpService.get('/api/users');
-  }
-
-  getAdmins() {
-    return this.httpService.get('/api/users/admin');
-  }
-
-  getNonAdmin() {
-    return this.httpService.get('/api/users/~');
+  updateUser(id, newDetails) {
+    return this.httpService.post(`/users/${id}`, newDetails);
   }
 
   deleteOneUser(id) {
-    return this.httpService.delete(`/api/users/${id}`);
+    return this.httpService.delete(`/users/${id}`);
   }
 
   deleteAllUsers() {
-    return this.httpService.delete('/api/users');
-  }
-
-  delete() {
-    return this.httpService.delete('/api/users/~');
-  }
-
-  updateUserDetails(id, details) {
-    return this.httpService.post(`/api/users/${id}`, details);
-  }
-
-  newTweet(newTweet) {
-    return this.httpService.post('/api/tweets', newTweet);
-  }
-
-  getTweet(id) {
-    return this.httpService.get(`/api/tweets/${id}`);
-  }
-
-  getTweets() {
-    return this.httpService.get('/api/tweets');
-  }
-
-  deleteOneTweet(id) {
-    return this.httpService.delete(`/api/tweets/${id}`);
-  }
-
-  deleteAllTweets() {
-    return this.httpService.delete('/api/tweets');
-  }
-
-  follow(followId) {
-    return this.httpService.get(`/api/users/follow?_id=${followId}`);
-  }
-
-  unfollow(followId) {
-    return this.httpService.get(`/api/users/unfollow?_id=${followId}`);
-  }
-
-  getAllTweetsForUser(userId) {
-    return this.httpService.get(`/api/users/${userId}/tweets`);
-  }
-
-  deleteAllTweetsForUser(userId) {
-    return this.httpService.delete(`/api/users/${userId}/tweets`);
-  }
-
-  getTimeline(userId) {
-    return this.httpService.get(`/api/users/${userId}/timeline`);
+    return this.httpService.delete('/users');
   }
 }
 
-module.exports = TweetService;
+module.exports = AppService;

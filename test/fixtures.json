@@ -1,0 +1,29 @@
+{
+  "AppService": "http://localhost:3000",
+  "users": [
+    {
+      "firstName": "David",
+      "lastName": "de Gea",
+      "email": "david@manutd.es",
+      "password": "secret"
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Pogba",
+      "email": "paul@manutd.fr",
+      "password": "special"
+    },
+    {
+      "firstName": "Alexis",
+      "lastName": "Sanchez",
+      "email": "alexis@manutd.cl",
+      "password": "hidden"
+    }
+  ],
+  "newDetails": {
+    "firstName": "Harry",
+    "lastName": "Kane",
+    "email": "harry@manutd.en",
+    "password": "newsigning"
+  }
+}

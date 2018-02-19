@@ -11,13 +11,18 @@
   "license": "ISC",
   "dependencies": {
     "boom": "^7.1.1",
+    "good": "^8.1.0",
     "hapi": "^17.2.0",
+    "joi": "^13.1.2",
     "mongoose": "^5.0.5"
   },
   "repository": "https://github.com/johnmadden86/app-server.git",
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^4.17.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.8.0",
+    "mocha": "^5.0.1",
+    "sync-request": "^5.0.0"
   }
 }
