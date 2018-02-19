@@ -1,4 +1,4 @@
-const User = require('./user-model');
+const User = require('./api/models/user');
 const Boom = require('boom');
 
 exports.addNew = {
