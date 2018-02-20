@@ -5,19 +5,19 @@
       "firstName": "David",
       "lastName": "de Gea",
       "email": "david@manutd.es",
-      "password": "secret"
+      "password": "newsecret"
     },
     {
       "firstName": "Paul",
       "lastName": "Pogba",
       "email": "paul@manutd.fr",
-      "password": "special"
+      "password": "special1"
     },
     {
       "firstName": "Alexis",
       "lastName": "Sanchez",
       "email": "alexis@manutd.cl",
-      "password": "hidden"
+      "password": "nowhidden"
     }
   ],
   "newDetails": {
