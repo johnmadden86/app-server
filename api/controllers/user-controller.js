@@ -17,30 +17,31 @@ exports.create = {
       firstName: Joi.string().regex(/^[a-zA-Z\s'-]{2,16}$/).required(),
       lastName: Joi.string().regex(/^[a-zA-Z\s'-]{2,32}$/).required(),
       email: Joi.string().email().required(),
-      password: Joi.string().regex(/^[^\s]{8,16}$/).required(),
+      hash: Joi.string().regex(/^[^\s]{8,16}$/).required(),
     },
   },
   handler: async (request) => {
     const user = new User(request.payload);
-    user.password = await new Promise((resolve) => {
-      bCrypt.hash(user.password, saltRounds, (err, hash) => resolve(hash));
+    user.hash = await new Promise((resolve, reject) => {
+      bCrypt.hash(user.hash, saltRounds, (err, hash) => {
+        if (err) {
+          return reject(Boom.badRequest(err));
+        }
+        return resolve(hash);
+      });
     });
     return user.save();
   },
 };
 
 exports.retrieveOne = {
-  handler: async request => User.findOne({ _id: request.params.id })
-    .sort({ lastName: 1, firstName: 1 })
-    .then(users => users)
-    .catch(err => Boom.badImplementation(`error accessing db ${err}`)),
+  handler: request => User.findOne({ _id: request.params.id })
+    .sort({ lastName: 1, firstName: 1 }),
 };
 
 exports.retrieveAll = {
-  handler: async () => User.find({})
-    .sort({ lastName: 1, firstName: 1 })
-    .then(users => users)
-    .catch(err => Boom.badImplementation(`error accessing db ${err}`)),
+  handler: () => User.find({})
+    .sort({ lastName: 1, firstName: 1 }),
 };
 
 exports.update = {
@@ -55,14 +56,19 @@ exports.update = {
       firstName: Joi.string().regex(/^[a-zA-Z\s'-]{2,16}$/).required(),
       lastName: Joi.string().regex(/^[a-zA-Z\s'-]{2,32}$/).required(),
       email: Joi.string().email().required(),
-      password: Joi.string().regex(/^[^\s]{8,16}$/).required(),
+      hash: Joi.string().regex(/^[^\s]{8,16}$/).required(),
     },
   },
   handler: async (request) => {
     const newDetails = request.payload;
     const userId = request.params.id;
-    newDetails.password = await new Promise((resolve) => {
-      bCrypt.hash(newDetails.password, saltRounds, (err, hash) => resolve(hash));
+    newDetails.hash = await new Promise((resolve, reject) => {
+      bCrypt.hash(newDetails.hash, saltRounds, (err, hash) => {
+        if (err) {
+          return reject(Boom.badRequest(err));
+        }
+        return resolve(hash);
+      });
     });
     return User.findOneAndUpdate({ _id: userId }, newDetails)
       .then(user => ({ user, newDetails }));
@@ -70,14 +76,12 @@ exports.update = {
 };
 
 exports.deleteOne = {
-  handler: async (request, h) => User.remove({ _id: request.params.id })
-    .then(() => h.response)
+  handler: request => User.remove({ _id: request.params.id })
     .catch(err => Boom.badImplementation(`error accessing db ${err}`)),
 };
 
 exports.deleteAll = {
-  handler: async (request, h) => User.remove({})
-    .then(() => h.response)
+  handler: () => User.remove({})
     .catch(err => Boom.badImplementation(`error accessing db ${err}`)),
 };
 
