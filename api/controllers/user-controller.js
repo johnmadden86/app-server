@@ -1,6 +1,9 @@
 const User = require('../models/user-model');
 const Boom = require('boom');
 const Joi = require('joi');
+const bCrypt = require('bcrypt');
+
+const saltRounds = 12;
 
 exports.create = {
   validate: {
@@ -17,12 +20,12 @@ exports.create = {
       password: Joi.string().regex(/^[^\s]{8,16}$/).required(),
     },
   },
-
   handler: async (request) => {
     const user = new User(request.payload);
-    return user.save()
-      .then(newUser => newUser)
-      .catch(err => Boom.badImplementation(`error creating user ${err}`));
+    user.password = await new Promise((resolve) => {
+      bCrypt.hash(user.password, saltRounds, (err, hash) => resolve(hash));
+    });
+    return user.save();
   },
 };
 
@@ -55,13 +58,14 @@ exports.update = {
       password: Joi.string().regex(/^[^\s]{8,16}$/).required(),
     },
   },
-
   handler: async (request) => {
     const newDetails = request.payload;
     const userId = request.params.id;
+    newDetails.password = await new Promise((resolve) => {
+      bCrypt.hash(newDetails.password, saltRounds, (err, hash) => resolve(hash));
+    });
     return User.findOneAndUpdate({ _id: userId }, newDetails)
-      .then(user => ({ old: user, new: newDetails }))
-      .catch(err => Boom.badImplementation(`error updating details ${err}`));
+      .then(user => ({ user, newDetails }));
   },
 };
 
