@@ -21,27 +21,41 @@ exports.create = {
     },
   },
   handler: async (request) => {
-    const user = new User(request.payload);
-    user.hash = await new Promise((resolve, reject) => {
-      bCrypt.hash(user.hash, saltRounds, (err, hash) => {
-        if (err) {
-          return reject(Boom.badRequest(err));
-        }
-        return resolve(hash);
+    try {
+      const user = new User(request.payload);
+      user.hash = await new Promise((resolve, reject) => {
+        bCrypt.hash(user.hash, saltRounds, (err, hash) => {
+          if (err) {
+            return reject(Boom.badRequest(err));
+          }
+          return resolve(hash);
+        });
       });
-    });
-    return user.save();
+      return user.save();
+    } catch (e) {
+      return Boom.badImplementation(`error creating user: ${e}`);
+    }
   },
 };
 
 exports.retrieveOne = {
-  handler: request => User.findOne({ _id: request.params.id })
-    .sort({ lastName: 1, firstName: 1 }),
+  handler: (request) => {
+    try {
+      return User.findOne({ _id: request.params.id });
+    } catch (e) {
+      return Boom.badImplementation(`error getting user: ${e}`);
+    }
+  },
 };
 
 exports.retrieveAll = {
-  handler: () => User.find({})
-    .sort({ lastName: 1, firstName: 1 }),
+  handler: () => {
+    try {
+      return User.find({}).sort({ lastName: 1, firstName: 1 });
+    } catch (e) {
+      return Boom.badImplementation(`error gettting users: ${e}`);
+    }
+  },
 };
 
 exports.update = {
@@ -60,28 +74,70 @@ exports.update = {
     },
   },
   handler: async (request) => {
-    const newDetails = request.payload;
-    const userId = request.params.id;
-    newDetails.hash = await new Promise((resolve, reject) => {
-      bCrypt.hash(newDetails.hash, saltRounds, (err, hash) => {
-        if (err) {
-          return reject(Boom.badRequest(err));
-        }
-        return resolve(hash);
+    try {
+      const newDetails = request.payload;
+      const userId = request.params.id;
+      newDetails.hash = await new Promise((resolve, reject) => {
+        bCrypt.hash(newDetails.hash, saltRounds, (err, hash) => {
+          if (err) {
+            return reject(Boom.badRequest(err));
+          }
+          return resolve(hash);
+        });
       });
-    });
-    return User.findOneAndUpdate({ _id: userId }, newDetails)
-      .then(user => ({ user, newDetails }));
+      await User.findOneAndUpdate({ _id: userId }, newDetails);
+      return User.find({ _id: userId });
+    } catch (e) {
+      return Boom.badImplementation(`error updating user: ${e}`);
+    }
   },
 };
 
 exports.deleteOne = {
-  handler: request => User.remove({ _id: request.params.id })
-    .catch(err => Boom.badImplementation(`error accessing db ${err}`)),
+  handler: (request) => {
+    try {
+      return User.remove({ _id: request.params.id });
+    } catch (err) {
+      return Boom.badImplementation(`error accessing db ${err}`);
+    }
+  },
 };
 
 exports.deleteAll = {
-  handler: () => User.remove({})
-    .catch(err => Boom.badImplementation(`error accessing db ${err}`)),
+  handler: () => {
+    try {
+      return User.remove();
+    } catch (err) {
+      return Boom.badImplementation(`error accessing db ${err}`);
+    }
+  },
+};
+
+exports.authenticate = {
+  handler: async (request) => {
+    try {
+      const enteredUser = request.payload;
+      const foundUser = await User.findOne({ email: enteredUser.email });
+      return new Promise((resolve, reject) => {
+        bCrypt.compare(enteredUser.hash, foundUser.hash, (err, isValid) => {
+          if (err) {
+            return reject(Boom.badRequest(err));
+          }
+          if (isValid) {
+            return resolve({
+              success: true,
+              user: foundUser,
+            });
+          }
+          return resolve({
+            success: false,
+            message: 'Authentication failed\nUser not found',
+          });
+        });
+      });
+    } catch (e) {
+      return Boom.badImplementation(`error accessing db ${e}`);
+    }
+  },
 };
 
