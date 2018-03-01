@@ -1,24 +1,30 @@
+require('make-promises-safe');
 const Hapi = require('hapi');
+const routes = require('./routes');
+const Auth = require('./api/controllers/auth-controller');
 
-// Create a server with a host and port
-const server = Hapi.server({
-  // host: 'localhost',
-  port: 3000,
-});
+const Server = Hapi.server({ host: 'localhost', port: 3000 });
 
-require('./api/models/db');
-server.route(require('./routes'));
-
-// Start the server
 const start = async () => {
-  try {
-    await server.start();
-  } catch (err) {
-    console.log(err);
-    process.exit(1);
-  }
+  Server.auth.scheme(Auth.schemeName, Auth.scheme);
+  Server.auth.strategy(Auth.strategyName, Auth.schemeName);
+  Server.auth.default(Auth.strategyName);
 
-  console.log('Server running at:', server.info.uri);
+  // eslint-disable-next-line global-require
+  require('./api/models/db');
+
+  Server.route(routes);
+
+  await Server.start();
+  return Server;
 };
 
-start();
+start()
+  .then((server) => {
+    console.log(`Server running at: ${server.info.uri}`);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+

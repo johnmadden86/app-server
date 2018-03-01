@@ -8,6 +8,8 @@ const local = 'localhost';
 const dbURI = `mongodb://${local}/app-server`;
 
 mongoose.connect(dbURI);
+//mongoose.connect(MongoDBUrl, {})
+//  .then(() => { console.log('Connected to Mongo server'); }, (err) => { console.log(err); });
 
 mongoose.connection.on('error', (err) => {
   console.log(`Mongoose connection error: ${err}`);

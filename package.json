@@ -12,9 +12,12 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "boom": "^7.1.1",
-    "good": "^8.1.0",
+    "dotenv": "^5.0",
     "hapi": "^17.2.0",
+    "hapi-auth-jwt2": "github:salzhrani/hapi-auth-jwt2#v-17",
     "joi": "^13.1.2",
+    "jsonwebtoken": "^8.1.1",
+    "make-promises-safe": "^1.1.0",
     "mongoose": "^5.0.5"
   },
   "repository": "https://github.com/johnmadden86/app-server.git",
