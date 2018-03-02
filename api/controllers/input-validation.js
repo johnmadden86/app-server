@@ -9,7 +9,7 @@ exports.signup = {
     firstName: Joi.string().regex(/^[a-zA-Z\s'-]{2,16}$/).required(),
     lastName: Joi.string().regex(/^[a-zA-Z\s'-]{2,32}$/).required(),
     email: Joi.string().email().required(),
-    hash: Joi.string().regex(/^[^\s]{8,16}$/).required(),
+    password: Joi.string().regex(/^[^\s]{8,16}$/).required(),
   },
 };
 

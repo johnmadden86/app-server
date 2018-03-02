@@ -8,6 +8,15 @@ class AppService {
     this.httpService = new HttpSync(baseUrl);
   }
 
+  authenticate(details) {
+    return this.httpService.setAuth('/', details);
+  }
+
+  logout() {
+    this.httpService.clearAuth();
+  }
+
+
   createUser(newUser) {
     return this.httpService.post('/users', newUser);
   }
@@ -25,6 +34,7 @@ class AppService {
   }
 
   deleteOneUser(id) {
+    console.log(id);
     return this.httpService.delete(`/users/${id}`);
   }
 

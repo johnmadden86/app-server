@@ -8,8 +8,8 @@ const saltRounds = 12;
 exports.create = async (request) => {
   try {
     const user = new User(request.payload);
-    user.hash = await new Promise((resolve, reject) => {
-      bCrypt.hash(user.hash, saltRounds, (err, hash) => {
+    user.password = await new Promise((resolve, reject) => {
+      bCrypt.hash(user.password, saltRounds, (err, hash) => {
         if (err) {
           return reject(Boom.badRequest(err));
         }
@@ -48,8 +48,8 @@ exports.update = async (request) => {
   try {
     const newDetails = request.payload;
     const userId = request.params.id;
-    newDetails.hash = await new Promise((resolve, reject) => {
-      bCrypt.hash(newDetails.hash, saltRounds, (err, hash) => {
+    newDetails.password = await new Promise((resolve, reject) => {
+      bCrypt.hash(newDetails.password, saltRounds, (err, hash) => {
         if (err) {
           return reject(Boom.badRequest(err));
         }
@@ -84,7 +84,7 @@ exports.authenticate = async (request) => {
     const enteredUser = request.payload;
     const foundUser = await User.findOne({ email: enteredUser.email });
     return new Promise((resolve, reject) => {
-      bCrypt.compare(enteredUser.hash, foundUser.hash, (err, isValid) => {
+      bCrypt.compare(enteredUser.password, foundUser.password, (err, isValid) => {
         if (err) {
           return reject(Boom.badRequest(err));
         }

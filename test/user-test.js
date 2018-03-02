@@ -21,11 +21,22 @@ suite('User API tests', () => {
 
   test('create', () => {
     users.forEach((user, index) => {
-      const newUser = appService.createUser(user);
+      const newUser = appService.createUser(user).user;
       assert.isDefined(newUser._id, newUser.__v);
-      assert.containsAllKeys(newUser, ['firstName', 'lastName', 'email', 'hash']);
+      assert.containsAllKeys(newUser, ['firstName', 'lastName', 'email', 'password']);
       userIds[index] = newUser._id;
     });
+  });
+
+  test('authenticate', () => {
+    const i = getRandomInt(users.length);
+    const details = {
+      email: users[i].email,
+      password: users[i].password,
+    };
+    assert.isNull(appService.getAllUsers());
+    appService.authenticate(details);
+    assert.isNotNull(appService.getAllUsers());
   });
 
   test('retrieve one', () => {
@@ -34,23 +45,23 @@ suite('User API tests', () => {
       assert.equal(registeredUser.firstName, users[index].firstName);
       assert.equal(registeredUser.lastName, users[index].lastName);
       assert.equal(registeredUser.email, users[index].email);
-      bCrypt.compare(user.hash, registeredUser.hash, (err, isValid) => {
+      bCrypt.compare(user.password, registeredUser.password, (err, isValid) => {
         assert.isTrue(isValid);
       });
     });
   });
 
   test('retrieve all', () => {
-    const usersWithoutPasswords = users;
-    for (let i = 0; i < usersWithoutPasswords.length; i += 1) {
-      delete usersWithoutPasswords[i].hash;
-    }
     const allUsers = appService.getAllUsers();
     assert.equal(allUsers.length, users.length);
     for (let i = 0; i < allUsers.length; i += 1) {
       delete allUsers[i]._id;
       delete allUsers[i].__v;
-      delete allUsers[i].hash;
+      delete allUsers[i].password;
+    }
+    const usersWithoutPasswords = JSON.parse(JSON.stringify(users));
+    for (let i = 0; i < usersWithoutPasswords.length; i += 1) {
+      delete usersWithoutPasswords[i].password;
     }
     assert.sameDeepMembers(allUsers, usersWithoutPasswords);
   });
@@ -62,20 +73,29 @@ suite('User API tests', () => {
     const newUser = appService.getOneUser(userIds[i]);
     assert.notDeepEqual(newUser, oldUser);
     assert.notInclude(newUser, users[i]);
-    users[i] = newDetails;
-    delete newUser.hash;
-    delete newDetails.hash;
+    Object.assign(users[i], newDetails);
+    delete newUser.password;
+    delete newDetails.password;
     assert.include(newUser, newDetails);
   });
 
   test('delete one', () => {
     const i = getRandomInt(users.length);
-    let allUsers = appService.getAllUsers();
-    assert.equal(allUsers.length, users.length);
-    appService.deleteOneUser(userIds[i]);
-    allUsers = appService.getAllUsers();
-    for (let j = 0; j < allUsers.length; j += 1) {
-      assert.notInclude(allUsers[j], users[i]);
+    let j = i;
+    while (j === i) {
+      j = getRandomInt(users.length);
+    }
+    const details = {
+      email: users[i].email,
+      password: users[i].password,
+    };
+    appService.logout();
+    appService.authenticate(details);
+    appService.deleteOneUser(userIds[j]);
+    const allUsers = appService.getAllUsers();
+    assert.equal(allUsers.length, users.length - 1);
+    for (let k = 0; k < allUsers.length; k += 1) {
+      assert.notEqual(allUsers[k].email, users[j].email);
     }
   });
 

@@ -3,11 +3,28 @@ const request = require('sync-request');
 class HttpSync {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
+    this.authHeader = null;
+  }
+
+  setAuth(url, user) {
+    const res = request('POST', this.baseUrl + url, { json: user });
+    if (res.statusCode === 200) {
+      const payload = JSON.parse(res.getBody('utf8'));
+      if (payload.success) {
+        this.authHeader = { Authorization: payload.token };
+        return true;
+      }
+    }
+    return false;
+  }
+
+  clearAuth() {
+    this.authHeader = null;
   }
 
   get(url) {
     let returnedObj = null;
-    const res = request('GET', this.baseUrl + url);
+    const res = request('GET', this.baseUrl + url, { headers: this.authHeader });
     if (res.statusCode < 300) {
       returnedObj = JSON.parse(res.getBody('utf8'));
     }
@@ -16,7 +33,7 @@ class HttpSync {
 
   post(url, obj) {
     let returnedObj = null;
-    const res = request('POST', this.baseUrl + url, { json: obj });
+    const res = request('POST', this.baseUrl + url, { json: obj, headers: this.authHeader });
     if (res.statusCode < 300) {
       returnedObj = JSON.parse(res.getBody('utf8'));
     }
@@ -24,7 +41,7 @@ class HttpSync {
   }
 
   delete(url) {
-    const res = request('DELETE', this.baseUrl + url);
+    const res = request('DELETE', this.baseUrl + url, { headers: this.authHeader });
     return res.statusCode;
   }
 }
