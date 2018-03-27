@@ -3,6 +3,14 @@ const Validate = require('./api/controllers/input-validation');
 
 module.exports = [
   {
+    method: 'GET',
+    path: '/',
+    options: {
+      auth: false,
+      handler: () => 'Hello world',
+    },
+  },
+  {
     method: 'POST',
     path: '/',
     options: {
@@ -48,6 +56,17 @@ module.exports = [
     options: {
       auth: false,
       handler: Controller.deleteAll,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/google',
+    options: {
+      auth: {
+        strategy: 'google',
+        mode: 'try',
+      },
+      handler: Controller.google,
     },
   },
 ];

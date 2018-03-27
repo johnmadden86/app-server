@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const { before, suite, test } = require('mocha');
 const { assert } = require('chai');
 const bCrypt = require('bcrypt');

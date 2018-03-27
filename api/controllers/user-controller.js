@@ -20,7 +20,6 @@ exports.create = async (request) => {
     return {
       success: true,
       user,
-      // eslint-disable-next-line no-underscore-dangle
       token: Utils.createToken(user._id),
     };
   } catch (e) {
@@ -63,17 +62,25 @@ exports.update = async (request) => {
   }
 };
 
-exports.deleteOne = (request) => {
+exports.deleteOne = async (request) => {
   try {
-    return User.remove({ _id: request.params.id });
+    const reply = await User.remove({ _id: request.params.id });
+    return {
+      success: true,
+      message: `${reply.n} users removed`,
+    };
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }
 };
 
-exports.deleteAll = () => {
+exports.deleteAll = async () => {
   try {
-    return User.remove();
+    const reply = await User.remove();
+    return {
+      success: true,
+      message: `${reply.n} users removed`,
+    };
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }
@@ -91,7 +98,6 @@ exports.authenticate = async (request) => {
         if (isValid) {
           return resolve({
             success: true,
-            // eslint-disable-next-line no-underscore-dangle
             token: Utils.createToken(foundUser._id),
           });
         }
@@ -106,3 +112,35 @@ exports.authenticate = async (request) => {
   }
 };
 
+exports.google = async (request) => {
+  if (!request.auth.isAuthenticated) {
+    return `Authentication failed due to: ${request.auth.error.message}`;
+  }
+  try {
+    // eslint-disable-next-line camelcase
+    const { given_name, family_name, email } = request.auth.credentials.profile.raw;
+    const foundUser = await User.findOne({ email });
+    if (foundUser) {
+      console.log(`logging in as ${foundUser.email}`);
+      return ({
+        success: true,
+        user: foundUser,
+        token: Utils.createToken(foundUser._id),
+      });
+    }
+    const user = new User({
+      firstName: given_name,
+      lastName: family_name,
+      email,
+    });
+    console.log(`registering ${user.email}`);
+    await user.save();
+    return {
+      success: true,
+      user,
+      token: Utils.createToken(user._id),
+    };
+  } catch (e) {
+    return Boom.badImplementation(`error creating user: ${e}`);
+  }
+};

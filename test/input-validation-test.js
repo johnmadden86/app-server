@@ -1,4 +1,6 @@
-const { before, suite, test } = require('mocha');
+const {
+  after, before, suite, test,
+} = require('mocha');
 const { assert } = require('chai');
 const AppService = require('./app-service');
 const fixtures = require('./fixtures');
@@ -21,7 +23,6 @@ const lastNameInvalidCharacter = '12AB';
 const lastNameAllValidCharacters = 'A\'BC-DE';
 
 const emailInvalidNoAt = 'xaty.z';
-const emailInvalidSpecialChar = '*@y.z';
 const emailValidCombination = 'x_1@y2.z.u';
 
 const passwordTooShort = '1234567';
@@ -35,6 +36,10 @@ const passwordValidCharacterCombination = 'RTrt$%45';
 
 suite('User API tests', () => {
   before(() => {
+    appService.deleteAllUsers();
+  });
+
+  after(() => {
     appService.deleteAllUsers();
   });
 
@@ -70,8 +75,6 @@ suite('User API tests', () => {
 
   test('email', () => {
     user.email = emailInvalidNoAt;
-    assert.isNull(appService.createUser(user));
-    user.email = emailInvalidSpecialChar;
     assert.isNull(appService.createUser(user));
     user.email = emailValidCombination;
     assert.isNotNull(appService.createUser(user));
