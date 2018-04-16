@@ -13,3 +13,14 @@ exports.signup = {
   },
 };
 
+exports.league = {
+  failAction(request, h, err) {
+    return err;
+  },
+  options: { abortEarly: false },
+  payload: {
+    name: Joi.string().regex(/^[a-zA-Z\s'-]{2,32}$/).required(),
+    entryFee: Joi.number().integer().min(0).max(100),
+  },
+};
+

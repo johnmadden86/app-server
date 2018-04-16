@@ -10,16 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^1.0.3",
     "bell": "^9.1.0",
     "boom": "^7.1.1",
     "dotenv": "^5.0",
+    "fs": "^0.0.1-security",
     "hapi": "^17.2.0",
     "hapi-auth-jwt2": "github:salzhrani/hapi-auth-jwt2#v-17",
     "joi": "^13.1.2",
     "jsonwebtoken": "^8.1.1",
     "make-promises-safe": "^1.1.0",
-    "mongoose": "^5.0.5"
+    "mongoose": "^5.0.5",
+    "mongoose-seed": "^0.4.1"
   },
   "repository": "https://github.com/johnmadden86/app-server.git",
   "devDependencies": {

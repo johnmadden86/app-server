@@ -1,52 +1,52 @@
 const bCrypt = require('bcrypt');
 const Boom = require('boom');
 const Utils = require('./auth-controller');
-const User = require('../models/user-model');
+const Player = require('../models/player-model');
 
 const saltRounds = 12;
 
 exports.create = async (request) => {
   try {
-    const user = new User(request.payload);
-    user.password = await new Promise((resolve, reject) => {
-      bCrypt.hash(user.password, saltRounds, (err, hash) => {
+    const player = new Player(request.payload);
+    player.password = await new Promise((resolve, reject) => {
+      bCrypt.hash(player.password, saltRounds, (err, hash) => {
         if (err) {
           return reject(Boom.badRequest(err));
         }
         return resolve(hash);
       });
     });
-    await user.save();
+    await player.save();
     return {
       success: true,
-      user,
-      token: Utils.createToken(user._id),
+      player,
+      token: Utils.createToken(player._id),
     };
   } catch (e) {
-    return Boom.badImplementation(`error creating user: ${e}`);
+    return Boom.badImplementation(`error creating player: ${e}`);
   }
 };
 
 exports.retrieveOne = (request) => {
   try {
-    return User.findOne({ _id: request.params.id });
+    return Player.findOne({ _id: request.params.id });
   } catch (e) {
-    return Boom.badImplementation(`error getting user: ${e}`);
+    return Boom.badImplementation(`error getting player: ${e}`);
   }
 };
 
 exports.retrieveAll = () => {
   try {
-    return User.find({}).sort({ lastName: 1, firstName: 1 });
+    return Player.find({}).sort({ lastName: 1, firstName: 1 });
   } catch (e) {
-    return Boom.badImplementation(`error gettting users: ${e}`);
+    return Boom.badImplementation(`error getting players: ${e}`);
   }
 };
 
 exports.update = async (request) => {
   try {
     const newDetails = request.payload;
-    const userId = request.params.id;
+    const playerId = request.params.id;
     newDetails.password = await new Promise((resolve, reject) => {
       bCrypt.hash(newDetails.password, saltRounds, (err, hash) => {
         if (err) {
@@ -55,19 +55,19 @@ exports.update = async (request) => {
         return resolve(hash);
       });
     });
-    await User.findOneAndUpdate({ _id: userId }, newDetails);
-    return User.find({ _id: userId });
+    await Player.findOneAndUpdate({ _id: playerId }, newDetails);
+    return Player.find({ _id: playerId });
   } catch (e) {
-    return Boom.badImplementation(`error updating user: ${e}`);
+    return Boom.badImplementation(`error updating player: ${e}`);
   }
 };
 
 exports.deleteOne = async (request) => {
   try {
-    const reply = await User.remove({ _id: request.params.id });
+    const reply = await Player.remove({ _id: request.params.id });
     return {
       success: true,
-      message: `${reply.n} users removed`,
+      message: `${reply.n} players removed`,
     };
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
@@ -76,10 +76,10 @@ exports.deleteOne = async (request) => {
 
 exports.deleteAll = async () => {
   try {
-    const reply = await User.remove();
+    const reply = await Player.remove();
     return {
       success: true,
-      message: `${reply.n} users removed`,
+      message: `${reply.n} players removed`,
     };
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
@@ -88,22 +88,22 @@ exports.deleteAll = async () => {
 
 exports.authenticate = async (request) => {
   try {
-    const enteredUser = request.payload;
-    const foundUser = await User.findOne({ email: enteredUser.email });
+    const enteredPlayer = request.payload;
+    const foundPlayer = await Player.findOne({ email: enteredPlayer.email });
     return new Promise((resolve, reject) => {
-      bCrypt.compare(enteredUser.password, foundUser.password, (err, isValid) => {
+      bCrypt.compare(enteredPlayer.password, foundPlayer.password, (err, isValid) => {
         if (err) {
           return reject(Boom.badRequest(err));
         }
         if (isValid) {
           return resolve({
             success: true,
-            token: Utils.createToken(foundUser._id),
+            token: Utils.createToken(foundPlayer._id),
           });
         }
         return resolve({
           success: false,
-          message: 'Authentication failed\nUser not found',
+          message: 'Authentication failed\nPlayer not found',
         });
       });
     });
@@ -119,28 +119,27 @@ exports.google = async (request) => {
   try {
     // eslint-disable-next-line camelcase
     const { given_name, family_name, email } = request.auth.credentials.profile.raw;
-    const foundUser = await User.findOne({ email });
-    if (foundUser) {
-      console.log(`logging in as ${foundUser.email}`);
+    const foundPlayer = await Player.findOne({ email });
+    if (foundPlayer) {
       return ({
         success: true,
-        user: foundUser,
-        token: Utils.createToken(foundUser._id),
+        player: foundPlayer,
+        token: Utils.createToken(foundPlayer._id),
       });
     }
-    const user = new User({
+    const player = new Player({
       firstName: given_name,
       lastName: family_name,
       email,
     });
-    console.log(`registering ${user.email}`);
-    await user.save();
+    await player.save();
     return {
       success: true,
-      user,
-      token: Utils.createToken(user._id),
+      player,
+      token: Utils.createToken(player._id),
     };
   } catch (e) {
-    return Boom.badImplementation(`error creating user: ${e}`);
+    return Boom.badImplementation(`error creating player: ${e}`);
   }
 };
+
