@@ -1,7 +1,8 @@
 require('make-promises-safe');
 const Hapi = require('hapi');
 const bell = require('bell');
-const routes = require('./routes');
+const routes = require('require.all')('./routes');
+
 const Auth = require('./api/controllers/auth-controller');
 const axios = require('axios');
 const fs = require('fs');
@@ -17,20 +18,14 @@ const start = async () => {
   // eslint-disable-next-line global-require
   require('./api/models/db');
 
-  Server.route(routes);
-
-  /*
-  const { data } = await axios('https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json');
-  const json = JSON.stringify(data);
-  try {
-    fs.writeFile('/app/app-server/api/models/data.json', json, (err) => {
-      if (err) throw err;
-      console.log('The file has been saved!');
-    });
-  } catch (e) {
-    console.log(e);
-  }
-  */
+  Server.route(routes.category);
+  Server.route(routes.game);
+  Server.route(routes.league);
+  Server.route(routes.player);
+  Server.route(routes.prediction);
+  // Server.route(routes.score);
+  Server.route(routes.team);
+  Server.route(routes.tournament);
 
   await Server.start();
   return Server;

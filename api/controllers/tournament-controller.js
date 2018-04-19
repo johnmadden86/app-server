@@ -1,60 +1,65 @@
 const Boom = require('boom');
 const Tournament = require('../models/tournament-model');
-const Utils = require('./auth-controller');
+// const Team = require('../models/team-model');
 
 exports.create = async (request) => {
-  // TODO
-  // new tournament
-  // name
-  // category
+  try {
+    return new Tournament(request.payload).save();
+  } catch (e) {
+    return Boom.badImplementation(`error creating tournament: ${e}`);
+  }
 };
 
+exports.retrieveOne = (request) => {
+  try {
+    return Tournament.findOne({ _id: request.params.id });
+  } catch (e) {
+    return Boom.badImplementation(`error getting tournament: ${e}`);
+  }
+};
+
+exports.retrieveAll = () => {
+  try {
+    return Tournament.find({}).sort({ name: 1 });
+  } catch (e) {
+    return Boom.badImplementation(`error getting tournaments: ${e}`);
+  }
+};
+
+exports.delete = async (request) => {
+  try {
+    return Tournament.remove({ _id: request.params.id });
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
+
+/*
 exports.addQualifiedTeams = async (request) => {
-  // TODO
-  // teams
+  try {
+    const { tournamentId } = request.payload;
+    const Teams = await Team.find({ name: request.payload.teams });
+    return Tournament.update(
+      { _id: tournamentId },
+      { $push: { qualifiedTeams: { $each: Teams } } },
+      { returnNewDocument: true },
+    );
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
 };
 
 exports.removeQualifiedTeams = async (request) => {
-  // TODO
-  // teams
+  try {
+    const { tournamentId } = request.payload;
+    const Teams = await Team.find({ name: request.payload.teams });
+    return Tournament.update(
+      { _id: tournamentId },
+      { $pull: { qualifiedTeams: Teams } },
+      { returnNewDocument: true },
+    );
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
 };
-
-exports.addGames = async (request) => {
-  // TODO
-  // from qualified teams
-  // start and finish times
-};
-
-exports.updateGame = async (request) => {
-  // TODO
-  // from qualified teams
-  // start and finish times
-};
-
-exports.removeGames = async (request) => {
-  // TODO
-  // from qualified teams
-  // start and finish times
-};
-
-exports.retrieve = () => {
-  // TODO
-  // get by name / id
-};
-
-
-exports.update = async (request) => {
-  // TODO
-  // rename, re-categorize
-};
-
-exports.delete = () => {
-  // TODO
-  // run at fixture start
-  // create new prediction
-  // no team, i.e. success = false
-  // highest remaining number
-};
-
-
-
+*/

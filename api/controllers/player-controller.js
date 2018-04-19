@@ -55,8 +55,7 @@ exports.update = async (request) => {
         return resolve(hash);
       });
     });
-    await Player.findOneAndUpdate({ _id: playerId }, newDetails);
-    return Player.find({ _id: playerId });
+    return Player.findOneAndReplace({ _id: playerId }, newDetails, { new: true });
   } catch (e) {
     return Boom.badImplementation(`error updating player: ${e}`);
   }
@@ -64,11 +63,7 @@ exports.update = async (request) => {
 
 exports.deleteOne = async (request) => {
   try {
-    const reply = await Player.remove({ _id: request.params.id });
-    return {
-      success: true,
-      message: `${reply.n} players removed`,
-    };
+    return Player.remove({ _id: request.params.id });
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }
@@ -76,11 +71,7 @@ exports.deleteOne = async (request) => {
 
 exports.deleteAll = async () => {
   try {
-    const reply = await Player.remove();
-    return {
-      success: true,
-      message: `${reply.n} players removed`,
-    };
+    return Player.remove();
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }

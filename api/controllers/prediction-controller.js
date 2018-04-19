@@ -1,31 +1,71 @@
 const Boom = require('boom');
 const Game = require('../models/game-model');
 const Utils = require('./auth-controller');
+const Tournament = require('../models/tournament-model');
+const Score = require('../models/score-model');
+const Prediction = require('../models/prediction-model');
 
 exports.create = async (request) => {
   // TODO
-  // take player id, game id, one team, one number
+  // verify weightings remaining
+  // remove weight used from array
+  try {
+    const player = await Utils.getPlayerIdFromRequest(request);
+    const { game, team, weighting } = request.payload;
+    return new Prediction({
+      player, game, team, weighting,
+    }).save();
+  } catch (e) {
+    return Boom.badImplementation(`error creating prediction: ${e}`);
+  }
 };
 
 exports.update = async (request) => {
   // TODO
-  // use existing prediction id, change team, change number
+  // put old weighting back in array, take new weighting out
+  try {
+    const player = await Utils.getPlayerIdFromRequest(request);
+    const { game, team, weighting } = request.payload;
+    return Prediction.findOneAndUpdate(
+      { player, game }, // find by both player id and game id
+      { $set: { team, weighting } }, // update team and weighting
+      { new: true }, // return new document
+    );
+  } catch (e) {
+    return Boom.badImplementation(`error updating prediction: ${e}`);
+  }
 };
 
-exports.missed = () => {
+exports.missed = async (request) => {
   // TODO
   // run at fixture start
-  // create new prediction
-  // no team, i.e. success = false
-  // highest remaining number
+  // remove weighting
+  try {
+    const { player, game } = request.payload;
+    const scores = Score.find({ player });
+    const weighting = Math.max(scores.weightingsRemaining);
+    return new Prediction({
+      player, game, weighting, correct: false,
+    }).save();
+  } catch (e) {
+    return Boom.badImplementation(`error creating missed prediction: ${e}`);
+  }
 };
 
-exports.resolve = () => {
-  // TODO
-  // run at fixture finish
-  // success = true || false
-  // add points
-  // update league table
+exports.resolve = async (request) => {
+  try {
+    const { game } = request.payload;
+    const finishedGame = Game.findOne({ game });
+    await Prediction.findOneAndUpdate(
+      { game, team: finishedGame.winner },
+      { $set: { correct: true } },
+    );
+    await Prediction.findOneAndUpdate(
+      { game, team: { $ne: finishedGame.winner } },
+      { $set: { correct: false } },
+    );
+    return Prediction.find({ game });
+  } catch (e) {
+    return Boom.badImplementation(`error resolving prediction: ${e}`);
+  }
 };
-
-

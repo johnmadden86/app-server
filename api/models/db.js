@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const seeder = require('mongoose-seed');
 
-const data = require('./seed-data');
+const data = require('../data/game-data');
 
 mongoose.Promise = global.Promise;
 

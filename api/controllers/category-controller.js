@@ -30,17 +30,6 @@ exports.retrieveAll = () => {
   }
 };
 
-exports.update = async (request) => {
-  try {
-    const newDetails = request.payload;
-    const categoryId = request.params.id;
-    await Category.findOneAndUpdate({ _id: categoryId }, newDetails);
-    return Category.find({ _id: categoryId });
-  } catch (e) {
-    return Boom.badImplementation(`error updating category: ${e}`);
-  }
-};
-
 exports.delete = async (request) => {
   try {
     const reply = await Category.remove({ _id: request.params.id });

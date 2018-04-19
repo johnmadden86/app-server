@@ -1,18 +1,15 @@
 const Boom = require('boom');
 const League = require('../models/league-model');
+const Tournament = require('../models/tournament-model');
 const Utils = require('./auth-controller');
 
 exports.create = async (request) => {
   try {
-    const league = new League(request.payload); // payload = [ name, entryFee ]
+    const league = new League(request.payload); // payload = [ tournament, name, entryFee, playerLimit ]
     const playerId = await Utils.getPlayerIdFromRequest(request);
     league.players.push(playerId);
     league.admins.push(playerId);
-    await league.save();
-    return {
-      success: true,
-      league,
-    };
+    return league.save();
   } catch (e) {
     return Boom.badImplementation(`error creating league: ${e}`);
   }
@@ -29,6 +26,14 @@ exports.retrieveOne = (request) => {
 exports.retrieveAll = () => {
   try {
     return League.find({}).sort({ title: 1 });
+  } catch (e) {
+    return Boom.badImplementation(`error getting leagues: ${e}`);
+  }
+};
+
+exports.retrieveAllForTournament = async (request) => {
+  try {
+    return League.find({ tournament: request.params.id }).sort({ title: 1 });
   } catch (e) {
     return Boom.badImplementation(`error getting leagues: ${e}`);
   }

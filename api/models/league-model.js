@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
 const leagueSchema = mongoose.Schema({
-  name: String,
   tournament: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tournament',
   },
+  name: String,
   playerLimit: Number,
+  entryFee: Number,
   players: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Player',
@@ -19,7 +20,6 @@ const leagueSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Player',
   }],
-  entryFee: Number,
   prizes: [Number],
 });
 
