@@ -1,5 +1,5 @@
-const HttpSync = require('../http-sync');
-const fixtures = require('../fixtures.json');
+const HttpSync = require("../http-sync");
+const fixtures = require("../tournaments/fixtures.json");
 
 const baseUrl = fixtures.AppService;
 
@@ -9,7 +9,7 @@ class AppService {
   }
 
   authenticate(details) {
-    return this.httpService.setAuth('/', details);
+    return this.httpService.setAuth("/", details);
   }
 
   logout() {
@@ -17,7 +17,7 @@ class AppService {
   }
 
   create(newCategory) {
-    return this.httpService.post('/categories', newCategory);
+    return this.httpService.post("/categories", newCategory);
   }
 
   getOne(id) {
@@ -25,7 +25,7 @@ class AppService {
   }
 
   getAll() {
-    return this.httpService.get('/categories');
+    return this.httpService.get("/categories");
   }
 
   delete(id) {

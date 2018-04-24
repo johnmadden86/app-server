@@ -1,11 +1,11 @@
-const bCrypt = require('bcrypt');
-const Boom = require('boom');
-const Utils = require('./auth-controller');
-const Player = require('../models/player-model');
+const bCrypt = require("bcrypt");
+const Boom = require("boom");
+const Utils = require("./auth-controller");
+const Player = require("../models/player-model");
 
 const saltRounds = 12;
 
-exports.create = async (request) => {
+exports.create = async request => {
   try {
     const player = new Player(request.payload);
     player.password = await new Promise((resolve, reject) => {
@@ -20,14 +20,14 @@ exports.create = async (request) => {
     return {
       success: true,
       player,
-      token: Utils.createToken(player._id),
+      token: Utils.createToken(player._id)
     };
   } catch (e) {
     return Boom.badImplementation(`error creating player: ${e}`);
   }
 };
 
-exports.retrieveOne = (request) => {
+exports.retrieveOne = request => {
   try {
     return Player.findOne({ _id: request.params.id });
   } catch (e) {
@@ -43,7 +43,7 @@ exports.retrieveAll = () => {
   }
 };
 
-exports.update = async (request) => {
+exports.update = async request => {
   try {
     const newDetails = request.payload;
     const playerId = request.params.id;
@@ -55,13 +55,15 @@ exports.update = async (request) => {
         return resolve(hash);
       });
     });
-    return Player.findOneAndReplace({ _id: playerId }, newDetails, { new: true });
+    return Player.findOneAndReplace({ _id: playerId }, newDetails, {
+      new: true
+    });
   } catch (e) {
     return Boom.badImplementation(`error updating player: ${e}`);
   }
 };
 
-exports.deleteOne = async (request) => {
+exports.deleteOne = async request => {
   try {
     return Player.remove({ _id: request.params.id });
   } catch (err) {
@@ -77,60 +79,73 @@ exports.deleteAll = async () => {
   }
 };
 
-exports.authenticate = async (request) => {
+exports.authenticate = async request => {
   try {
     const enteredPlayer = request.payload;
     const foundPlayer = await Player.findOne({ email: enteredPlayer.email });
-    return new Promise((resolve, reject) => {
-      bCrypt.compare(enteredPlayer.password, foundPlayer.password, (err, isValid) => {
-        if (err) {
-          return reject(Boom.badRequest(err));
-        }
-        if (isValid) {
-          return resolve({
-            success: true,
-            token: Utils.createToken(foundPlayer._id),
-          });
-        }
-        return resolve({
-          success: false,
-          message: 'Authentication failed\nPlayer not found',
-        });
+    if (foundPlayer) {
+      return new Promise((resolve, reject) => {
+        bCrypt.compare(
+          enteredPlayer.password,
+          foundPlayer.password,
+          (err, isValid) => {
+            if (err) {
+              return reject(Boom.badRequest(err));
+            }
+            if (isValid) {
+              return resolve({
+                success: true,
+                token: Utils.createToken(foundPlayer._id)
+              });
+            }
+            return resolve({
+              success: false,
+              message: "Authentication failed - Incorrect Password"
+            });
+          }
+        );
       });
-    });
+    }
+    return {
+      success: false,
+      message: "Authentication failed - Player Not Found"
+    };
   } catch (e) {
     return Boom.badImplementation(`error accessing db ${e}`);
   }
 };
 
-exports.google = async (request) => {
+exports.google = async request => {
   if (!request.auth.isAuthenticated) {
     return `Authentication failed due to: ${request.auth.error.message}`;
   }
   try {
     // eslint-disable-next-line camelcase
-    const { given_name, family_name, email } = request.auth.credentials.profile.raw;
+    const {
+      given_name,
+      family_name,
+      email
+    } = request.auth.credentials.profile.raw;
     const foundPlayer = await Player.findOne({ email });
     if (foundPlayer) {
-      return ({
+      return {
         success: true,
         player: foundPlayer,
-        token: Utils.createToken(foundPlayer._id),
-      });
+        token: Utils.createToken(foundPlayer._id)
+      };
     }
     const player = new Player({
       firstName: given_name,
       lastName: family_name,
-      email,
+      email
     });
     await player.save();
     return {
       success: true,
       player,
-      token: Utils.createToken(player._id),
+      token: Utils.createToken(player._id)
     };
   } catch (e) {
     return Boom.badImplementation(`error creating player: ${e}`);
   }
 };
-

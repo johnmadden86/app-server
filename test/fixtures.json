@@ -1,6 +1,6 @@
 {
   "AppService": "http://localhost:3000",
-  "users": [
+  "players": [
     {
       "firstName": "David",
       "lastName": "de Gea",

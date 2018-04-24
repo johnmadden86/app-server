@@ -1,0 +1,21 @@
+{
+  "server": "http://localhost:3000",
+  "newPlayer": {
+    "firstName": "David",
+    "lastName": "de Gea",
+    "email": "david@manutd.es",
+    "password": "newsecret"
+  },
+  "noSuchPlayer": {
+    "firstName": "Harry",
+    "lastName": "Kane",
+    "email": "harry@manutd.en",
+    "password": "newsigning"
+  },
+  "incorrectPassword": {
+    "firstName": "David",
+    "lastName": "de Gea",
+    "email": "david@manutd.es",
+    "password": "incorrect"
+  }
+}
