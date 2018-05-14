@@ -4,21 +4,21 @@ module.exports = [
   {
     method: 'POST',
     path: '/tournaments',
-    options: { handler: TournamentController.create },
+    options: { handler: TournamentController.create }
   },
   {
     method: 'GET',
     path: '/tournaments/{id}',
-    options: { handler: TournamentController.retrieveOne },
+    options: { handler: TournamentController.retrieveOne }
   },
   {
     method: 'GET',
     path: '/tournaments',
-    options: { handler: TournamentController.retrieveAll },
+    options: { handler: TournamentController.retrieveAll }
   },
   {
     method: 'DELETE',
     path: '/tournaments/{id}',
-    options: { handler: TournamentController.delete },
-  },
+    options: { handler: TournamentController.delete }
+  }
 ];

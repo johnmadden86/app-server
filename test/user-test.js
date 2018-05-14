@@ -22,7 +22,12 @@ suite('User API tests', () => {
     users.forEach((user, index) => {
       const newUser = appService.createUser(user).user;
       assert.isDefined(newUser._id, newUser.__v);
-      assert.containsAllKeys(newUser, ['firstName', 'lastName', 'email', 'password']);
+      assert.containsAllKeys(newUser, [
+        'firstName',
+        'lastName',
+        'email',
+        'password'
+      ]);
       userIds[index] = newUser._id;
     });
   });
@@ -31,7 +36,7 @@ suite('User API tests', () => {
     const i = getRandomInt(users.length);
     const details = {
       email: users[i].email,
-      password: users[i].password,
+      password: users[i].password
     };
     assert.isNull(appService.getAllUsers());
     appService.authenticate(details);
@@ -86,7 +91,7 @@ suite('User API tests', () => {
     }
     const details = {
       email: users[i].email,
-      password: users[i].password,
+      password: users[i].password
     };
     appService.logout();
     appService.authenticate(details);

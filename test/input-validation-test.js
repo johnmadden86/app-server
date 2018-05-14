@@ -1,6 +1,4 @@
-const {
-  after, before, suite, test,
-} = require('mocha');
+const { after, before, suite, test } = require('mocha');
 const { assert } = require('chai');
 const AppService = require('./app-service');
 const fixtures = require('./fixtures');
@@ -13,14 +11,14 @@ const firstNameTooLong = 'abcdefghijklmnopq';
 const firstNameLowerBound = 'ab';
 const firstNameUpperBound = 'abcdefghijklmnop';
 const firstNameInvalidCharacter = 'ab&cd';
-const firstNameAllValidCharacters = 'a\'bc-de';
+const firstNameAllValidCharacters = "a'bc-de";
 
 const lastNameTooShort = 'a';
 const lastNameTooLong = 'abcdefghijklmnopqrstuvwxyzABCDEFG';
 const lastNameLowerBound = 'ab';
 const lastNameUpperBound = 'abcdefghijklmnopqrstuvwxyzABCDEF';
 const lastNameInvalidCharacter = '12AB';
-const lastNameAllValidCharacters = 'A\'BC-DE';
+const lastNameAllValidCharacters = "A'BC-DE";
 
 const emailInvalidNoAt = 'xaty.z';
 const emailValidCombination = 'x_1@y2.z.u';

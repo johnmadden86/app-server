@@ -24,7 +24,9 @@ class HttpSync {
 
   get(url) {
     let returnedObj = null;
-    const res = request('GET', this.baseUrl + url, { headers: this.authHeader });
+    const res = request('GET', this.baseUrl + url, {
+      headers: this.authHeader
+    });
     if (res.statusCode < 300) {
       returnedObj = JSON.parse(res.getBody('utf8'));
     }
@@ -33,7 +35,10 @@ class HttpSync {
 
   post(url, obj) {
     let returnedObj = null;
-    const res = request('POST', this.baseUrl + url, { json: obj, headers: this.authHeader });
+    const res = request('POST', this.baseUrl + url, {
+      json: obj,
+      headers: this.authHeader
+    });
     if (res.statusCode < 300) {
       returnedObj = JSON.parse(res.getBody('utf8'));
     }
@@ -41,7 +46,9 @@ class HttpSync {
   }
 
   delete(url) {
-    const res = request('DELETE', this.baseUrl + url, { headers: this.authHeader });
+    const res = request('DELETE', this.baseUrl + url, {
+      headers: this.authHeader
+    });
     return res.statusCode;
   }
 }

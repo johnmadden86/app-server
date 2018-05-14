@@ -7,16 +7,16 @@ module.exports = [
     path: '/',
     options: {
       auth: false,
-      handler: () => 'Hello world',
-    },
+      handler: () => 'Hello world'
+    }
   },
   {
     method: 'POST',
     path: '/',
     options: {
       auth: false,
-      handler: PlayerController.authenticate,
-    },
+      handler: PlayerController.authenticate
+    }
   },
   {
     method: 'POST',
@@ -24,42 +24,47 @@ module.exports = [
     options: {
       auth: false,
       handler: PlayerController.create,
-      validate: Validate.signup,
-    },
+      validate: Validate.signup
+    }
+  },
+  {
+    method: 'GET',
+    path: '/player',
+    options: { handler: PlayerController.retrieveLoggedInPlayer }
   },
   {
     method: 'GET',
     path: '/players/{id}',
-    options: { handler: PlayerController.retrieveOne },
+    options: { handler: PlayerController.retrieveOne }
   },
   {
     method: 'GET',
     path: '/players',
     options: {
       auth: false,
-      handler: PlayerController.retrieveAll,
-    },
+      handler: PlayerController.retrieveAll
+    }
   },
   {
     method: 'POST',
     path: '/players/{id}',
     options: {
       handler: PlayerController.update,
-      validate: Validate.signup,
-    },
+      validate: Validate.signup
+    }
   },
   {
     method: 'DELETE',
     path: '/players/{id}',
-    options: { handler: PlayerController.deleteOne },
+    options: { handler: PlayerController.deleteOne }
   },
   {
     method: 'DELETE',
     path: '/players',
     options: {
       auth: false,
-      handler: PlayerController.deleteAll,
-    },
+      handler: PlayerController.deleteAll
+    }
   },
   {
     method: 'GET',
@@ -67,9 +72,9 @@ module.exports = [
     options: {
       auth: {
         strategy: 'google',
-        mode: 'try',
+        mode: 'try'
       },
-      handler: PlayerController.google,
-    },
-  },
-  ];
+      handler: PlayerController.google
+    }
+  }
+];

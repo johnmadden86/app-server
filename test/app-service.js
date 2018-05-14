@@ -1,60 +1,60 @@
 const HttpSync = require('./http-sync');
-const fixtures = require('./fixtures.json');
-
-const baseUrl = fixtures.AppService;
 
 class AppService {
-  constructor() {
+  constructor(baseUrl) {
     this.httpService = new HttpSync(baseUrl);
   }
 
+  /* Auth / Sign-in */
+
   authenticate(details) {
     return this.httpService.setAuth('/', details);
+  }
+
+  login(details) {
+    return this.httpService.post('/', details);
   }
 
   logout() {
     this.httpService.clearAuth();
   }
 
+  /* Player */
 
-  createUser(newUser) {
-    return this.httpService.post('/users', newUser);
+  createPlayer(newPlayer) {
+    return this.httpService.post('/players', newPlayer);
   }
 
-  getOneUser(id) {
-    return this.httpService.get(`/users/${id}`);
+  getOnePlayer(id) {
+    return this.httpService.get(`/players/${id}`);
   }
 
-  getAllUsers() {
-    return this.httpService.get('/users');
+  getAllPlayers() {
+    return this.httpService.get('/players');
   }
 
-  updateUser(id, newDetails) {
-    return this.httpService.post(`/users/${id}`, newDetails);
+  updatePlayer(id, newDetails) {
+    return this.httpService.post(`/players/${id}`, newDetails);
   }
 
-  deleteOneUser(id) {
-    return this.httpService.delete(`/users/${id}`);
+  deleteOnePlayer(id) {
+    return this.httpService.delete(`/players/${id}`);
   }
 
-  deleteAllUsers() {
-    return this.httpService.delete('/users');
+  deleteAllPlayers() {
+    return this.httpService.delete('/players');
   }
 
-  createCategory(newUser) {
-    return this.httpService.post('/categories', newUser);
-  }
+  /* Category */
 
   getOneCategory(id) {
     return this.httpService.get(`/categories/${id}`);
   }
 
-  getAllCategories() {
-    return this.httpService.get('/categories');
-  }
+  /* Tournament */
 
-  deleteCategory(id) {
-    return this.httpService.delete(`/categories/${id}`);
+  getOneTournament(id) {
+    return this.httpService.get(`/tournaments/${id}`);
   }
 }
 

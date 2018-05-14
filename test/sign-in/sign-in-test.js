@@ -1,46 +1,46 @@
-const { after, suite, test } = require("mocha");
-const { assert } = require("chai");
-const AppService = require("./app-service");
-const fixtures = require("./sign-in-fixtures");
+const { after, suite, test } = require('mocha');
+const { assert } = require('chai');
+const AppService = require('../app-service');
+const fixtures = require('./sign-in-fixtures');
 
 const { server, newPlayer, noSuchPlayer, incorrectPassword } = fixtures;
 const appService = new AppService(server);
 let id;
 
-suite("Sign-in API tests", () => {
+suite('Sign-in API tests', () => {
   after(() => {
     appService.authenticate(newPlayer);
     // auth required for deletion
-    appService.deleteOne(id);
+    appService.deleteOnePlayer(id);
   });
 
-  test("create", async () => {
-    const { player } = await appService.create(newPlayer);
+  test('create', async () => {
+    const { player } = await appService.createPlayer(newPlayer);
     id = player._id;
     assert.isDefined(player._id, player.__v);
     assert.containsAllKeys(player, [
-      "firstName",
-      "lastName",
-      "email",
-      "password"
+      'firstName',
+      'lastName',
+      'email',
+      'password'
     ]);
   });
 
-  test("login", async () => {
+  test('login', async () => {
     const reply = await appService.login(newPlayer);
     assert.isTrue(reply.success);
     assert.isDefined(reply.token);
   });
 
-  test("login no such player", async () => {
+  test('login no such player', async () => {
     const reply = await appService.login(noSuchPlayer);
     assert.isNotTrue(reply.success);
-    assert.include(reply.message, "Not Found");
+    assert.include(reply.message, 'Not Found');
   });
 
-  test("login incorrect password", async () => {
+  test('login incorrect password', async () => {
     const reply = await appService.login(incorrectPassword);
     assert.isNotTrue(reply.success);
-    assert.include(reply.message, "Incorrect Password");
+    assert.include(reply.message, 'Incorrect Password');
   });
 });

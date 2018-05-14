@@ -4,7 +4,7 @@ const playerSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   email: String,
-  password: String,
+  password: String
 });
 
 module.exports = mongoose.model('Player', playerSchema);

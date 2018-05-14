@@ -1,0 +1,10 @@
+{
+  "server": "http://localhost:3000",
+  "newPlayer": {
+    "firstName": "David",
+    "lastName": "de Gea",
+    "email": "david@manutd.es",
+    "password": "newsecret"
+  },
+  "tournamentId": "5ad71fcf810c872d54bc9157"
+}

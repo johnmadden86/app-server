@@ -1,9 +1,0 @@
-{
-  "AppService": "http://localhost:3000",
-  "details": {
-      "email": "marge@simpson.com",
-      "password": "password"
-    },
-  "validCategories": [{ "name": "Soccer - International" }],
-  "invalidCategories": [{ "name": "Football" }]
-}

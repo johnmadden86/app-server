@@ -7,60 +7,60 @@ module.exports = [
     path: '/leagues',
     options: {
       handler: LeagueController.create,
-      validate: Validate.league,
-    },
+      validate: Validate.league
+    }
   },
   {
     method: 'GET',
     path: '/leagues/{id}',
-    options: { handler: LeagueController.retrieveOne },
+    options: { handler: LeagueController.retrieveOne }
   },
   {
     method: 'GET',
     path: '/leagues',
-    options: { handler: LeagueController.retrieveAll },
+    options: { handler: LeagueController.retrieveAll }
   },
   {
     method: 'GET',
     path: '/players/{id}/leagues',
-    options: { handler: LeagueController.retrieveAllForPlayer },
+    options: { handler: LeagueController.retrieveAllForPlayer }
   },
   {
     method: 'GET',
     path: '/tournaments/{id}/leagues',
-    options: { handler: LeagueController.retrieveAllForTournament },
+    options: { handler: LeagueController.retrieveAllForTournament }
   },
   {
     method: 'POST',
     path: '/leagues/{id}',
     options: {
       handler: LeagueController.update,
-      validate: Validate.league,
-    },
+      validate: Validate.league
+    }
   },
   {
     method: 'DELETE',
     path: '/leagues/{id}',
-    options: { handler: LeagueController.deleteOne },
+    options: { handler: LeagueController.deleteOne }
   },
   {
     method: 'DELETE',
     path: '/leagues',
-    options: { handler: LeagueController.deleteAll },
+    options: { handler: LeagueController.deleteAll }
   },
   {
     method: 'POST',
     path: '/leagues/join',
-    options: { handler: LeagueController.joinLeague },
+    options: { handler: LeagueController.joinLeague }
   },
   {
     method: 'GET',
     path: '/leagues/{id}/leave',
-    options: { handler: LeagueController.leaveLeague },
+    options: { handler: LeagueController.leaveLeague }
   },
   {
     method: 'GET',
     path: '/leagues/update',
-    options: { handler: LeagueController.updateTable },
-  },
+    options: { handler: LeagueController.updateTable }
+  }
 ];

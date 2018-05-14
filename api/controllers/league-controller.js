@@ -3,7 +3,7 @@ const League = require('../models/league-model');
 const Tournament = require('../models/tournament-model');
 const Utils = require('./auth-controller');
 
-exports.create = async (request) => {
+exports.create = async request => {
   try {
     const league = new League(request.payload); // payload = [ tournament, name, entryFee, playerLimit ]
     const playerId = await Utils.getPlayerIdFromRequest(request);
@@ -15,7 +15,7 @@ exports.create = async (request) => {
   }
 };
 
-exports.retrieveOne = (request) => {
+exports.retrieveOne = request => {
   try {
     return League.findOne({ _id: request.params.id });
   } catch (e) {
@@ -31,7 +31,7 @@ exports.retrieveAll = () => {
   }
 };
 
-exports.retrieveAllForTournament = async (request) => {
+exports.retrieveAllForTournament = async request => {
   try {
     return League.find({ tournament: request.params.id }).sort({ title: 1 });
   } catch (e) {
@@ -39,7 +39,7 @@ exports.retrieveAllForTournament = async (request) => {
   }
 };
 
-exports.retrieveAllForPlayer = async (request) => {
+exports.retrieveAllForPlayer = async request => {
   const playerId = await Utils.getPlayerIdFromRequest(request);
   try {
     return League.find({ players: playerId }).sort({ title: 1 });
@@ -48,7 +48,7 @@ exports.retrieveAllForPlayer = async (request) => {
   }
 };
 
-exports.update = async (request) => {
+exports.update = async request => {
   try {
     const newDetails = request.payload; // name, entryFee
     const leagueId = request.params.id;
@@ -63,12 +63,12 @@ exports.setPrizes = async () => {
   // TODO
 };
 
-exports.deleteOne = async (request) => {
+exports.deleteOne = async request => {
   try {
     const reply = await League.remove({ _id: request.params.id });
     return {
       success: true,
-      message: `${reply.n} leagues removed`,
+      message: `${reply.n} leagues removed`
     };
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
@@ -80,14 +80,14 @@ exports.deleteAll = async () => {
     const reply = await League.remove();
     return {
       success: true,
-      message: `${reply.n} leagues removed`,
+      message: `${reply.n} leagues removed`
     };
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }
 };
 
-exports.joinLeague = async (request) => {
+exports.joinLeague = async request => {
   try {
     const league = await League.findOne({ _id: request.payload.leagueId });
     const playerId = await Utils.getPlayerIdFromRequest(request);
@@ -98,14 +98,14 @@ exports.joinLeague = async (request) => {
     await league.save();
     return {
       success: true,
-      league,
+      league
     };
   } catch (e) {
     return Boom.badImplementation(`error creating league: ${e}`);
   }
 };
 
-exports.leaveLeague = async (request) => {
+exports.leaveLeague = async request => {
   try {
     const league = await League.findOne({ _id: request.params.id });
     const playerId = await Utils.getPlayerIdFromRequest(request);
@@ -116,7 +116,7 @@ exports.leaveLeague = async (request) => {
     await league.save();
     return {
       success: true,
-      league,
+      league
     };
   } catch (e) {
     return Boom.badImplementation(`error creating league: ${e}`);

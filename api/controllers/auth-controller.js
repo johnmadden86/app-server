@@ -6,9 +6,14 @@ exports.tokenSecret = 'change-me-i-am-secret';
 exports.schemeName = 'schemeName';
 exports.strategyName = 'strategyName';
 
-exports.createToken = playerId => jwt.sign({ id: playerId }, this.tokenSecret, { algorithm: 'HS256', expiresIn: '1h' });
+exports.createToken = playerId =>
+  jwt.sign({ id: playerId }, this.tokenSecret, {
+    algorithm: 'HS256',
+    expiresIn: '1h'
+  });
 
-exports.decodeToken = token => jwt.verify(token, this.tokenSecret, { algorithms: ['HS256', 'HS384'] });
+exports.decodeToken = token =>
+  jwt.verify(token, this.tokenSecret, { algorithms: ['HS256', 'HS384'] });
 
 exports.authenticate = async (request, h) => {
   try {
@@ -21,23 +26,15 @@ exports.authenticate = async (request, h) => {
   }
 };
 
-exports.getPlayerIdFromRequest = (request) => {
-  try {
-    const { authorization } = request.headers;
-    const decoded = this.decodeToken(authorization);
-    return decoded.id;
-  } catch (err) {
-    return Boom.unauthorized(err);
-  }
+exports.getPlayerIdFromRequest = request => {
+  const { authorization } = request.headers;
+  const decoded = this.decodeToken(authorization);
+  return decoded.id;
 };
 
-exports.getPlayerFromRequest = async (id) => {
-  try {
-    console.log('player found');
-    return await Player.findOne({ _id: id });
-  } catch (err) {
-    return Boom.unauthorized(err);
-  }
+exports.getPlayerFromRequest = async request => {
+  const _id = this.getPlayerIdFromRequest(request);
+  return Player.findOne({ _id });
 };
 exports.scheme = () => ({ authenticate: this.authenticate });
 
@@ -45,7 +42,8 @@ exports.googleOAuthOptions = server => ({
   provider: 'google',
   password: 'cookie_encryption_password_secure',
   isSecure: false,
-  clientId: '228726651093-i6cogib8up91319cqrn03p784i0sti1d.apps.googleusercontent.com',
+  clientId:
+    '228726651093-i6cogib8up91319cqrn03p784i0sti1d.apps.googleusercontent.com',
   clientSecret: '6aCyq6AwzQaOqGouwQValHxT',
-  location: server.info.uri,
+  location: server.info.uri
 });

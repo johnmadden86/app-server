@@ -1,19 +1,17 @@
-{
-  method: 'GET',
-    path: '/seed-teams',
-  options: { handler: DataController.addTeams },
-},
-{
-  method: 'GET',
-    path: '/tournaments/teams',
-  options: { handler: DataController.addQualifiedTeams },
-},
-{
-  method: 'GET',
-    path: '/tournaments/games',
-  options: { handler: DataController.addGames },
-},
-const DataController = require('../api/controllers/data-controller');
+const Hapi = require('hapi');
 
-module.exports = [
-];
+const start = async () => {
+  const Server = Hapi.server({ host: 'localhost', port: 3000 });
+  await Server.start();
+  // eslint-disable-next-line global-require
+  require('./api/data/db');
+  return Server;
+};
+
+start()
+  .then(server => {
+    console.log(`Server running at: ${server.info.uri}`);
+  })
+  .catch(err => {
+    throw err;
+  });

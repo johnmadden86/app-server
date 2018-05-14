@@ -1,11 +1,8 @@
-require('make-promises-safe');
 const Hapi = require('hapi');
 const bell = require('bell');
 const routes = require('require.all')('./routes');
 
 const Auth = require('./api/controllers/auth-controller');
-const axios = require('axios');
-const fs = require('fs');
 
 const start = async () => {
   const Server = Hapi.server({ host: 'localhost', port: 3000 });
@@ -16,14 +13,14 @@ const start = async () => {
   Server.auth.default(Auth.strategyName);
 
   // eslint-disable-next-line global-require
-  require('./api/models/db');
+  require('./api/data/db');
 
   Server.route(routes.category);
   Server.route(routes.game);
   Server.route(routes.league);
   Server.route(routes.player);
   Server.route(routes.prediction);
-  // Server.route(routes.score);
+  Server.route(routes.score);
   Server.route(routes.team);
   Server.route(routes.tournament);
 
@@ -32,10 +29,9 @@ const start = async () => {
 };
 
 start()
-  .then((server) => {
+  .then(server => {
     console.log(`Server running at: ${server.info.uri}`);
   })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
+  .catch(err => {
+    throw err;
   });

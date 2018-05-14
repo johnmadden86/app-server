@@ -6,10 +6,22 @@ const gameSchema = mongoose.Schema({
   teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Team' }],
   startTime: Date,
   finishTime: Date, // 2 hours after kick-off of final group games, 3 hours after kick-off for knockout games
-  winner: { type: mongoose.Schema.Types.ObjectId, ref: 'Team', default: null },
+  winner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Team',
+    default: null,
+    validate: {
+      validator(value) {
+        return this.teams.includes(value);
+      }
+    }
+  },
+  // TODO validate to only come from teams in game
   runnerUp: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'Team', default: null,
-  }, // groups only (for creating knockout games)
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Team',
+    default: null
+  } // groups only (for creating knockout games)
 });
 
 module.exports = mongoose.model('Game', gameSchema);

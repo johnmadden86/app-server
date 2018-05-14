@@ -9,7 +9,7 @@ const games = require('../data/game-data');
 const category = '5ad48dc61b350a07ec36548a';
 
 // 1 -  create category
-//2 - create tournament
+// 2 - create tournament
 // create teams
 // add qualified teams
 // create games
@@ -20,7 +20,7 @@ exports.addTeams = async () => {
       const team = {
         name: country['CLDR display name'],
         shortName: country.FIFA,
-        category,
+        category
       };
       await new Team(team).save();
     }
@@ -33,7 +33,7 @@ exports.addQualifiedTeams = async () => {
     const Teams = await Team.find({ name: teams });
     await Tournament.update(
       { name: 'World Cup 2018' },
-      { $push: { qualifiedTeams: { $each: Teams } } },
+      { $push: { qualifiedTeams: { $each: Teams } } }
     );
     return Tournament.find({ name: 'World Cup 2018' });
   } catch (err) {
@@ -53,7 +53,7 @@ exports.addGames = async () => {
     const Games = await Game.find({ tournament: tournament._id });
     await Tournament.update(
       { name: 'World Cup 2018' },
-      { $push: { games: { $each: Games } } },
+      { $push: { games: { $each: Games } } }
     );
     return Tournament.find({ name: 'World Cup 2018' });
   } catch (err) {
@@ -61,29 +61,28 @@ exports.addGames = async () => {
   }
 };
 
-exports.addGame = async (request) => {
+exports.addGame = async request => {
   try {
-    const {
-      name, teams, startTime, finishTime,
-    } = request.payload;
+    const { name, teams, startTime, finishTime } = request.payload;
     let { tournament } = request.payload;
-    tournament = await Tournament.find({ name: request.payload.tournamentName });
+    tournament = await Tournament.find({
+      name: request.payload.tournamentName
+    });
     const game = {
       tournament,
       name,
       teams: await Team.find({ name: teams }),
       startTime,
-      finishTime,
+      finishTime
     };
     await new Game(game).save();
     const Games = await Game.find({ tournament });
     await Tournament.update(
       { _id: tournament },
-      { $push: { games: { $each: Games } } },
+      { $push: { games: { $each: Games } } }
     );
     return Tournament.find({ _id: tournament });
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }
 };
-

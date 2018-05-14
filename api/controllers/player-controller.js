@@ -1,7 +1,7 @@
-const bCrypt = require("bcrypt");
-const Boom = require("boom");
-const Utils = require("./auth-controller");
-const Player = require("../models/player-model");
+const bCrypt = require('bcrypt');
+const Boom = require('boom');
+const Utils = require('./auth-controller');
+const Player = require('../models/player-model');
 
 const saltRounds = 12;
 
@@ -17,6 +17,7 @@ exports.create = async request => {
       });
     });
     await player.save();
+    delete player.password;
     return {
       success: true,
       player,
@@ -30,6 +31,14 @@ exports.create = async request => {
 exports.retrieveOne = request => {
   try {
     return Player.findOne({ _id: request.params.id });
+  } catch (e) {
+    return Boom.badImplementation(`error getting player: ${e}`);
+  }
+};
+
+exports.retrieveLoggedInPlayer = async request => {
+  try {
+    return Utils.getPlayerFromRequest(request);
   } catch (e) {
     return Boom.badImplementation(`error getting player: ${e}`);
   }
@@ -93,14 +102,16 @@ exports.authenticate = async request => {
               return reject(Boom.badRequest(err));
             }
             if (isValid) {
+              const { _id, firstName, lastName, email } = foundPlayer;
               return resolve({
                 success: true,
-                token: Utils.createToken(foundPlayer._id)
+                token: Utils.createToken(foundPlayer._id),
+                player: { _id, firstName, lastName, email }
               });
             }
             return resolve({
               success: false,
-              message: "Authentication failed - Incorrect Password"
+              message: 'Authentication failed - Incorrect Password'
             });
           }
         );
@@ -108,7 +119,7 @@ exports.authenticate = async request => {
     }
     return {
       success: false,
-      message: "Authentication failed - Player Not Found"
+      message: 'Authentication failed - Player Not Found'
     };
   } catch (e) {
     return Boom.badImplementation(`error accessing db ${e}`);
@@ -120,12 +131,8 @@ exports.google = async request => {
     return `Authentication failed due to: ${request.auth.error.message}`;
   }
   try {
-    // eslint-disable-next-line camelcase
-    const {
-      given_name,
-      family_name,
-      email
-    } = request.auth.credentials.profile.raw;
+    // eslint-disable-next-line camelcase,prettier/prettier
+    const { given_name, family_name, email } = request.auth.credentials.profile.raw;
     const foundPlayer = await Player.findOne({ email });
     if (foundPlayer) {
       return {

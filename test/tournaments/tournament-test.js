@@ -1,45 +1,30 @@
-const { before, beforeEach, suite, test } = require('mocha');
+const { after, before, beforeEach, suite, test } = require('mocha');
 const { assert } = require('chai');
-const AppService = require('./app-service');
-const fixtures = require('./fixtures');
+const AppService = require('../app-service');
+const fixtures = require('./tournament-fixtures');
 
-const appService = new AppService(fixtures.AppService);
-const { details, validCategories, invalidCategories } = fixtures;
-let catId;
+const { server, newPlayer, tournamentId } = fixtures;
+const appService = new AppService(server);
+let id;
 
-suite('User API tests', () => {
+suite('Tournament API tests', () => {
+  before(async () => {
+    await appService.createPlayer(newPlayer);
+  });
+
   beforeEach(() => {
-    appService.authenticate(details);
+    appService.authenticate(newPlayer);
   });
 
-  test('create valid', () => {
-    const newCat = appService.create(validCategories[0]);
-    assert.isDefined(newCat.category._id, newCat.category.__v);
-    assert.containsAllKeys(newCat.category, ['name']);
-    catId = newCat.category._id;
-    console.log(catId);
+  after(() => {
+    appService.authenticate(newPlayer);
+    // auth required for deletion
+    appService.deleteOnePlayer(id);
   });
 
-  test('create invalid', () => {
-    const newCat = appService.create(invalidCategories[0]);
-    assert.isNull(newCat);
-  });
-
-  test('retrieve one', () => {
-    const category = appService.getOne(catId);
-    console.log(category);
-    assert.isDefined(category._id, category.__v);
-    assert.containsAllKeys(category, ['name']);
-  });
-
-  test('retrieve all', () => {
-    const allCats = appService.getAll();
-    assert.equal(validCategories.length, allCats.length);
-  });
-
-  test('delete', async () => {
-    appService.delete(catId);
-    const allCats = await appService.getAll();
-    assert.equal(allCats.length, validCategories.length - 1);
+  test('create', async () => {
+    const tournament = await appService.getOneTournament(tournamentId);
+    assert.isDefined(tournament._id, tournament.__v);
+    assert.containsAllKeys(tournament, ['name', 'active', 'category', 'games']);
   });
 });
