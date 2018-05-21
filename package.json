@@ -5,25 +5,38 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^1.0.3",
+    "bell": "^9.1.0",
     "boom": "^7.1.1",
-    "good": "^8.1.0",
+    "dotenv": "^5.0",
+    "fs": "^0.0.1-security",
     "hapi": "^17.2.0",
+    "hapi-auth-jwt2": "github:salzhrani/hapi-auth-jwt2#v-17",
     "joi": "^13.1.2",
-    "mongoose": "^5.0.5"
+    "jsonwebtoken": "^8.1.1",
+    "mongoose": "^5.0.5",
+    "mongoose-seed": "^0.4.1",
+    "require.all": "^2.0.4"
   },
   "repository": "https://github.com/johnmadden86/app-server.git",
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "chai": "^4.1.2",
-    "eslint": "^4.17.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
     "mocha": "^5.0.1",
+    "prettier": "^1.12.1",
     "sync-request": "^5.0.0"
   }
 }

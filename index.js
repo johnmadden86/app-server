@@ -1,24 +1,37 @@
 const Hapi = require('hapi');
+const bell = require('bell');
+const routes = require('require.all')('./routes');
 
-// Create a server with a host and port
-const server = Hapi.server({
-  // host: 'localhost',
-  port: 3000,
-});
+const Auth = require('./api/controllers/auth-controller');
 
-require('./api/models/db');
-server.route(require('./routes'));
-
-// Start the server
 const start = async () => {
-  try {
-    await server.start();
-  } catch (err) {
-    console.log(err);
-    process.exit(1);
-  }
+  const Server = Hapi.server({ host: 'localhost', port: 3000 });
+  await Server.register(bell);
+  Server.auth.scheme(Auth.schemeName, Auth.scheme);
+  Server.auth.strategy(Auth.strategyName, Auth.schemeName);
+  Server.auth.strategy('google', 'bell', Auth.googleOAuthOptions(Server));
+  Server.auth.default(Auth.strategyName);
 
-  console.log('Server running at:', server.info.uri);
+  // eslint-disable-next-line global-require
+  require('./api/data/db');
+
+  Server.route(routes.category);
+  Server.route(routes.game);
+  Server.route(routes.league);
+  Server.route(routes.player);
+  Server.route(routes.prediction);
+  Server.route(routes.score);
+  Server.route(routes.team);
+  Server.route(routes.tournament);
+
+  await Server.start();
+  return Server;
 };
 
-start();
+start()
+  .then(server => {
+    console.log(`Server running at: ${server.info.uri}`);
+  })
+  .catch(err => {
+    throw err;
+  });

@@ -1,0 +1,10 @@
+{
+  "server": "http://localhost:3000",
+  "newPlayer": {
+    "firstName": "David",
+    "lastName": "de Gea",
+    "email": "david@manutd.es",
+    "password": "newsecret"
+  },
+  "categoryId": "5ad761a0a22d7a31b8f7512f"
+}
