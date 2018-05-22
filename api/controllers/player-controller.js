@@ -1,6 +1,7 @@
+const Utils = require('./auth-controller');
+
 const bCrypt = require('bcrypt');
 const Boom = require('boom');
-const Utils = require('./auth-controller');
 const Player = require('../models/player-model');
 
 const saltRounds = 12;
@@ -16,15 +17,24 @@ exports.create = async request => {
         return resolve(hash);
       });
     });
-    await player.save();
-    delete player.password;
+
+    await player.validate();
+
+    // await player.save();
+    console.log('no error');
+
     return {
       success: true,
       player,
       token: Utils.createToken(player._id)
     };
   } catch (e) {
-    return Boom.badImplementation(`error creating player: ${e}`);
+    const error = new Boom(e, { statusCode: 412 });
+    console.log(error.errors);
+    // error.reformat();
+    console.log(new Date('7 July 2018 18:00 UTC+4'));
+    error.output.payload.custom = 'abc_123';
+    return error;
   }
 };
 

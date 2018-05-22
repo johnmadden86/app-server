@@ -1,187 +1,243 @@
 [
   {
     "name": "Group A",
+    "stage": 1,
     "teams": [
       "Russia",
       "Saudi Arabia",
       "Egypt",
       "Uruguay"
     ],
-    "startTime": "2018-06-14T18:00+03:00",
-    "finishTime": "2018-06-25T19:00+03:00"
+    "startTime": "14 June 2018 18:00 UTC+3",
+    "finishTime": "25 June 2018 19:00 UTC+3",
+    "winnerToGame": 49,
+    "runnerUpToGame": 51
   },
   {
     "name": "Group B",
+    "stage": 1,
     "teams": [
       "Portugal",
       "Spain",
       "Morocco",
       "Iran"
     ],
-    "startTime": "2018-06-15T18:00+03:00",
-    "finishTime": "2018-06-25T23:00+03:00"
+    "startTime": "15 June 2018 18:00 UTC+3",
+    "finishTime": "25 June 2018 22:00 UTC+2",
+    "winnerToGame": 51,
+    "runnerUpToGame": 49
   },
   {
     "name": "Group C",
+    "stage": 1,
     "teams": [
       "France",
       "Australia",
       "Peru",
       "Denmark"
     ],
-    "startTime": "2018-06-16T13:00+03:00",
-    "finishTime": "2018-06-26T19:00+03:00"
+    "startTime": "16 June 2018 13:00 UTC+3",
+    "finishTime": "26 June 2018 19:00 UTC+3",
+    "winnerToGame": 50,
+    "runnerUpToGame": 52
   },
   {
     "name": "Group D",
+    "stage": 1,
     "teams": [
       "Argentina",
       "Iceland",
       "Croatia",
       "Nigeria"
     ],
-    "startTime": "2018-06-16T16:00+03:00",
-    "finishTime": "2018-06-26T23:00+03:00"
+    "startTime": "16 June 2018 16:00 UTC+3",
+    "finishTime": "26 June 2018 23:00 UTC+3",
+    "winnerToGame": 52,
+    "runnerUpToGame": 50
   },
   {
     "name": "Group E",
+    "stage": 1,
     "teams": [
       "Brazil",
       "Switzerland",
       "Costa Rica",
       "Serbia"
     ],
-    "startTime": "2018-06-17T16:00+04:00",
-    "finishTime": "2018-06-27T23:00+03:00"
+    "startTime": "17 June 2018 16:00 UTC+4",
+    "finishTime": "27 June 2018 23:00 UTC+3",
+    "winnerToGame": 53,
+    "runnerUpToGame": 55
   },
   {
     "name": "Group F",
+    "stage": 1,
     "teams": [
       "Germany",
       "Mexico",
       "Sweden",
       "South Korea"
     ],
-    "startTime": "2018-06-17T18:00+03:00",
-    "finishTime": "2018-06-27T19:00+03:00"
+    "startTime": "17 June 2018 18:00 UTC+3",
+    "finishTime": "27 June 2018 21:00 UTC+5",
+    "winnerToGame": 55,
+    "runnerUpToGame": 53
   },
   {
     "name": "Group G",
+    "stage": 1,
     "teams": [
       "Belgium",
       "Panama",
       "Tunisia",
       "England"
     ],
-    "startTime": "2018-06-18T18:00+03:00",
-    "finishTime": "2018-06-28T23:00+03:00"
+    "startTime": "18 June 2018 18:00 UTC+3",
+    "finishTime": "28 June 2018 23:00 UTC+3",
+    "winnerToGame": 54,
+    "runnerUpToGame": 56
   },
   {
     "name": "Group H",
+    "stage": 1,
     "teams": [
       "Poland",
       "Senegal",
       "Colombia",
       "Japan"
     ],
-    "startTime": "2018-06-19T15:00+03:00",
-    "finishTime": "2018-06-28T19:00+03:00"
+    "startTime": "19 June 2018 15:00 UTC+3",
+    "finishTime": "28 June 201818:00 UTC+4",
+    "winnerToGame": 56,
+    "runnerUpToGame": 54
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 50,
     "teams": [],
-    "startTime": "2018-06-30T21:00+03:00",
-    "finishTime": "2018-07-01T00:00+03:00"
+    "startTime": "30 June 2018 17:00 UTC+3",
+    "winnerToGame": 57
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 49,
     "teams": [],
-    "startTime": "2018-06-30T17:00+03:00",
-    "finishTime": "2018-06-30T20:00+03:00"
+    "startTime": "30 June 2018 21:00 UTC+3",
+    "winnerToGame": 57
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 51,
     "teams": [],
-    "startTime": "2018-07-02T18:00+04:00",
-    "finishTime": "2018-07-02T21:00+04:00"
+    "startTime": "1 July 2018 17:00 UTC+3",
+    "winnerToGame": 59
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 52,
     "teams": [],
-    "startTime": "2018-07-02T21:00+03:00",
-    "finishTime": "2018-07-03T00:00+03:00"
+    "startTime": "1 July 2018 21:00 UTC+3",
+    "winnerToGame": 59
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 53,
     "teams": [],
-    "startTime": "2018-07-01T17:00+03:00",
-    "finishTime": "2018-07-01T20:00+03:00"
+    "startTime": "2 July 2018 18:00 UTC+4",
+    "winnerToGame": 58
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 54,
     "teams": [],
-    "startTime": "2018-07-01T21:00+03:00",
-    "finishTime": "2018-07-02T00:00+03:00"
+    "startTime": "2 July 2018 21:00 UTC+3",
+    "winnerToGame": 58
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 55,
     "teams": [],
-    "startTime": "2018-07-03T17:00+03:00",
-    "finishTime": "2018-07-03T20:00+03:00"
+    "startTime": "3 July 2018 17:00 UTC+3",
+    "winnerToGame": 60
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 56,
     "teams": [],
-    "startTime": "2018-07-03T21:00+03:00",
-    "finishTime": "2018-07-04T00:00+03:00"
+    "startTime": "3 July 2018 21:00 UTC+3",
+    "winnerToGame": 60
   },
   {
     "name": "Quarter Final",
+    "stage": 3,
+    "gameNumber": 57,
     "teams": [],
-    "startTime": "2018-07-06T17:00+03:00",
-    "finishTime": "2018-07-06T20:00+03:00"
+    "startTime": "6 July 2018 17:00 UTC+3",
+    "winnerToGame": 61
   },
   {
     "name": "Quarter Final",
+    "stage": 3,
+    "gameNumber": 58,
     "teams": [],
-    "startTime": "2018-07-06T21:00+03:00",
-    "finishTime": "2018-07-07T00:00+03:00"
+    "startTime": "6 July 2018 21:00 UTC+3",
+    "winnerToGame": 61
   },
   {
     "name": "Quarter Final",
+    "stage": 3,
+    "gameNumber": 60,
     "teams": [],
-    "startTime": "2018-07-07T21:00+04:00",
-    "finishTime": "2018-07-08T00:00+04:00"
+    "startTime": "7 July 2018 18:00 UTC+4",
+    "winnerToGame": 62
   },
   {
     "name": "Quarter Final",
+    "stage": 3,
+    "gameNumber": 59,
     "teams": [],
-    "startTime": "2018-07-07T18:00+04:00",
-    "finishTime": "2018-07-07T21:00+04:00"
+    "startTime": "7 July 2018 21:00 UTC+3",
+    "winnerToGame": 62
   },
   {
     "name": "Semi Final",
+    "stage": 4,
+    "gameNumber": 61,
     "teams": [],
-    "startTime": "2018-07-10T21:00+03:00",
-    "finishTime": "2018-07-11T00:00+03:00"
+    "startTime": "10 July 2018 21:00 UTC+3",
+    "winnerToGame": 64,
+    "runnerUpToGame": 63
   },
   {
     "name": "Semi Final",
+    "stage": 4,
+    "gameNumber": 62,
     "teams": [],
-    "startTime": "2018-07-11T21:00+03:00",
-    "finishTime": "2018-07-12T00:00+03:00"
+    "startTime": "11 July 2018 21:00 UTC+3",
+    "winnerToGame": 64,
+    "runnerUpToGame": 63
   },
   {
     "name": "Third Place Playoff",
+    "stage": 5,
+    "gameNumber": 63,
     "teams": [],
-    "startTime": "2018-07-14T17:00+03:00",
-    "finishTime": "2018-07-14T20:00+03:00"
+    "startTime": "14 July 2018 17:00 UTC+3"
   },
   {
     "name": "Final",
+    "stage": 5,
+    "gameNumber": 64,
     "teams": [],
-    "startTime": "2018-07-15T18:00+03:00",
-    "finishTime": "2018-07-15T21:00+03:00"
+    "startTime": "15 July 2018 18:00 UTC+3"
   }
 ]
 

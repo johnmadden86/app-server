@@ -1,11 +1,12 @@
 const Hapi = require('hapi');
 const bell = require('bell');
-const routes = require('require.all')('./routes');
-
 const Auth = require('./api/controllers/auth-controller');
+
+const routes = require('require.all')('./routes');
 
 const start = async () => {
   const Server = Hapi.server({ host: 'localhost', port: 3000 });
+
   await Server.register(bell);
   Server.auth.scheme(Auth.schemeName, Auth.scheme);
   Server.auth.strategy(Auth.strategyName, Auth.schemeName);

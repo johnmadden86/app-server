@@ -4,6 +4,16 @@ const Team = require('../models/team-model');
 exports.create = async request => {
   try {
     return new Team(request.payload).save();
+    // http://www.countryflags.io/be/flat/64.png
+  } catch (e) {
+    return Boom.badImplementation(`error creating team: ${e}`);
+  }
+};
+
+exports.findByName = async request => {
+  try {
+    const { team } = request.url.query;
+    return Team.findOne({ name: team });
   } catch (e) {
     return Boom.badImplementation(`error creating team: ${e}`);
   }
@@ -30,7 +40,7 @@ exports.update = request => {
     const newDetails = request.payload;
     const teamId = request.params.id;
     return Team.findOneAndReplace({ _id: teamId }, newDetails, {
-      returnNewDocument: true
+      new: true
     });
   } catch (e) {
     return Boom.badImplementation(`error updating team: ${e}`);
@@ -40,6 +50,23 @@ exports.update = request => {
 exports.delete = async request => {
   try {
     return Team.remove({ _id: request.params.id });
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
+
+const { teams } = require('../data/wc-teams');
+
+exports.insert = async () => {
+  try {
+    const wcTeams = teams.map(team => ({
+      name: team.name,
+      shortName: team.code,
+      category: '5ad761a0a22d7a31b8f7512f',
+      flag: team.crestUrl
+    }));
+
+    return Team.collection.insert(wcTeams);
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }

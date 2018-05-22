@@ -1,5 +1,3 @@
-// @flow
-
 const mongoose = require('mongoose');
 
 const predictionSchema = mongoose.Schema({
@@ -7,11 +5,6 @@ const predictionSchema = mongoose.Schema({
     // player making the prediction
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Player'
-  },
-  tournament: {
-    // tournament games are in
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Tournament'
   },
   game: {
     // game making prediction on
