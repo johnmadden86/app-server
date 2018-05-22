@@ -9,7 +9,7 @@ exports.createOrRetrieve = async request => {
     const { tournamentId } = request.url.query;
     const tournament = await Tournament.findOne({ _id: tournamentId });
     const weightingsRemaining = [];
-    for (let i = 0; i < tournament.games.length; i += 1) {
+    for (let i = 0; i < tournament.events; i += 1) {
       weightingsRemaining.push(i + 1);
     }
     return Score.findOneAndUpdate(

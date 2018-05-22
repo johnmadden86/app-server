@@ -1,5 +1,5 @@
 {
-  "AppService": "http://localhost:3000",
+  "server": "http://localhost:3000",
   "players": [
     {
       "firstName": "David",
@@ -25,5 +25,11 @@
     "lastName": "Kane",
     "email": "harry@manutd.en",
     "password": "newsigning"
-  }
+  },
+  "newTournament": {
+    "name": "World Cup 2022",
+    "active": false,
+    "category": "5ad761a0a22d7a31b8f7512f"
+  },
+  "tournamentId": "5ad71fcf810c872d54bc9157"
 }

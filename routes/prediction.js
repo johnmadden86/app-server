@@ -12,6 +12,11 @@ module.exports = [
     options: { handler: PredictionController.retrieve }
   },
   {
+    method: 'GET',
+    path: '/predictions/games',
+    options: { handler: PredictionController.retrieveGamesWithPrediction }
+  },
+  {
     method: 'POST',
     path: '/predictions/resolve',
     options: { handler: PredictionController.resolve }

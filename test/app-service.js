@@ -56,6 +56,14 @@ class AppService {
   getOneTournament(id) {
     return this.httpService.get(`/tournaments/${id}`);
   }
+
+  createTournament(details) {
+    return this.httpService.post(`/tournaments`, details);
+  }
+
+  deleteTournament(id) {
+    return this.httpService.delete(`/tournaments/${id}`);
+  }
 }
 
 module.exports = AppService;

@@ -4,6 +4,16 @@ const Team = require('../models/team-model');
 exports.create = async request => {
   try {
     return new Team(request.payload).save();
+    // http://www.countryflags.io/be/flat/64.png
+  } catch (e) {
+    return Boom.badImplementation(`error creating team: ${e}`);
+  }
+};
+
+exports.findByName = async request => {
+  try {
+    const { team } = request.url.query;
+    return Team.findOne({ name: team });
   } catch (e) {
     return Boom.badImplementation(`error creating team: ${e}`);
   }
@@ -30,7 +40,7 @@ exports.update = request => {
     const newDetails = request.payload;
     const teamId = request.params.id;
     return Team.findOneAndReplace({ _id: teamId }, newDetails, {
-      returnNewDocument: true
+      new: true
     });
   } catch (e) {
     return Boom.badImplementation(`error updating team: ${e}`);

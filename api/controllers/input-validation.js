@@ -1,9 +1,8 @@
 const Joi = require('joi');
+// const Boom = require('boom');
 
 exports.signup = {
-  failAction(request, h, err) {
-    return err;
-  },
+  failAction: async (request, h, err) => err,
   options: { abortEarly: false },
   payload: {
     firstName: Joi.string()

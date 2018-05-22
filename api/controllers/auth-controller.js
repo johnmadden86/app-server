@@ -2,18 +2,20 @@ const Boom = require('boom');
 const jwt = require('jsonwebtoken');
 const Player = require('../models/player-model');
 
-exports.tokenSecret = 'change-me-i-am-secret';
 exports.schemeName = 'schemeName';
 exports.strategyName = 'strategyName';
+exports.tokenSecret = 'change-me-i-am-secret';
 
 exports.createToken = playerId =>
   jwt.sign({ id: playerId }, this.tokenSecret, {
     algorithm: 'HS256',
-    expiresIn: '1h'
+    expiresIn: '12h'
   });
 
 exports.decodeToken = token =>
   jwt.verify(token, this.tokenSecret, { algorithms: ['HS256', 'HS384'] });
+
+exports.scheme = () => ({ authenticate: this.authenticate });
 
 exports.authenticate = async (request, h) => {
   try {
@@ -36,7 +38,6 @@ exports.getPlayerFromRequest = async request => {
   const _id = this.getPlayerIdFromRequest(request);
   return Player.findOne({ _id });
 };
-exports.scheme = () => ({ authenticate: this.authenticate });
 
 exports.googleOAuthOptions = server => ({
   provider: 'google',

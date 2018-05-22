@@ -9,7 +9,6 @@ exports.createOrUpdate = async request => {
     const player = await Utils.getPlayerIdFromRequest(request);
     const { tournament, game, team } = request.payload;
     const newWeighting = request.payload.weighting;
-    console.log(tournament, game, team, newWeighting);
     const prediction = await Prediction.findOneAndUpdate(
       { player, game },
       { $set: { team, weighting: newWeighting } },
@@ -50,8 +49,29 @@ exports.retrieve = async request => {
     const player = await Utils.getPlayerIdFromRequest(request);
     const { tournamentId } = request.url.query;
     return Prediction.find({ player, tournament: tournamentId }).sort({
-      game: 1 // sort by game id
+      startTime: 1
     });
+  } catch (e) {
+    return Boom.badImplementation(`error finding predictions: ${e}`);
+  }
+};
+
+exports.retrieveGamesWithPrediction = async request => {
+  try {
+    const player = await Utils.getPlayerIdFromRequest(request);
+    const { tournament } = request.url.query;
+    // find games for tournament
+    const games = await Game.find({ tournament });
+    // reduce to only ids
+    const gameIds = games.map(game => game._id);
+    // find predictions for tournament
+    const predictions = await Prediction.find({ player, game: gameIds });
+    // reduce to ids
+    const gameIdsWithPredictions = predictions.map(
+      prediction => prediction.game
+    );
+    // find games with predictions
+    return Game.find({ _id: { $not: { $eq: gameIdsWithPredictions } } });
   } catch (e) {
     return Boom.badImplementation(`error finding predictions: ${e}`);
   }

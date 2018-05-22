@@ -5,9 +5,9 @@ module.exports = [
   {
     method: 'GET',
     path: '/',
+    handler: () => 'Hello world',
     options: {
-      auth: false,
-      handler: () => 'Hello world'
+      auth: false
     }
   },
   {
@@ -21,10 +21,11 @@ module.exports = [
   {
     method: 'POST',
     path: '/players',
+    handler: PlayerController.create,
     options: {
-      auth: false,
-      handler: PlayerController.create,
-      validate: Validate.signup
+      auth: false
+
+      // validate: Validate.signup
     }
   },
   {

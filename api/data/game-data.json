@@ -89,30 +89,45 @@
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 49,
+    "draw": ["A", "b"],
     "teams": [],
     "startTime": "2018-06-30T21:00+03:00",
     "finishTime": "2018-07-01T00:00+03:00"
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 50,
+    "draw": "Cd",
     "teams": [],
     "startTime": "2018-06-30T17:00+03:00",
     "finishTime": "2018-06-30T20:00+03:00"
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 51,
+    "draw": "Ba",
     "teams": [],
     "startTime": "2018-07-02T18:00+04:00",
     "finishTime": "2018-07-02T21:00+04:00"
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 52,
+    "draw": "Dc",
     "teams": [],
     "startTime": "2018-07-02T21:00+03:00",
     "finishTime": "2018-07-03T00:00+03:00"
   },
   {
     "name": "Round of 16",
+    "stage": 2,
+    "gameNumber": 53,
+    "draw": "Ab",
     "teams": [],
     "startTime": "2018-07-01T17:00+03:00",
     "finishTime": "2018-07-01T20:00+03:00"

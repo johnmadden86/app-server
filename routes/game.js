@@ -8,24 +8,8 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/games/{id}',
-    options: { handler: GameController.retrieveOne }
-  },
-  {
-    method: 'GET',
     path: '/games',
-    options: { auth: false, handler: GameController.retrieveAll }
-  },
-  // TODO retrieve all for tournament
-  {
-    method: 'GET',
-    path: '/games/past',
-    options: { handler: GameController.retrievePast }
-  },
-  {
-    method: 'GET',
-    path: '/games/future',
-    options: { handler: GameController.retrieveFuture }
+    options: { handler: GameController.retrieve }
   },
   {
     method: 'POST',
@@ -36,5 +20,10 @@ module.exports = [
     method: 'POST',
     path: '/games/fixture',
     options: { handler: GameController.updateFixture }
+  },
+  {
+    method: 'GET',
+    path: '/games/insert',
+    options: { handler: GameController.insert }
   }
 ];

@@ -6,7 +6,9 @@ const scoreSchema = mongoose.Schema({
   weightingsRemaining: [Number],
   weightingsUsed: [Number],
   pointsScored: { type: Number, default: 0 }, // sum of weightings used on correct predictions
-  pointsUsed: { type: Number, default: 0 } // sum of weightings used
+  pointsUsed: { type: Number, default: 0 }, // sum of weightings used
+  correctPredictions: { type: Number, default: 0 },
+  totalPredictions: { type: Number, default: 0 }
 });
 
 module.exports = mongoose.model('Score', scoreSchema);
