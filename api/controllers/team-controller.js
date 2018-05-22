@@ -54,3 +54,20 @@ exports.delete = async request => {
     return Boom.badImplementation(`error accessing db ${err}`);
   }
 };
+
+const { teams } = require('../data/wc-teams');
+
+exports.insert = async () => {
+  try {
+    const wcTeams = teams.map(team => ({
+      name: team.name,
+      shortName: team.code,
+      category: '5ad761a0a22d7a31b8f7512f',
+      flag: team.crestUrl
+    }));
+
+    return Team.collection.insert(wcTeams);
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
