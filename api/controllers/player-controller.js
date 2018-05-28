@@ -18,13 +18,9 @@ exports.create = async request => {
       });
     });
 
-    await player.validate();
-
-    // await player.save();
-    console.log('no error');
+    await player.save();
 
     return {
-      success: true,
       player,
       token: Utils.createToken(player._id)
     };

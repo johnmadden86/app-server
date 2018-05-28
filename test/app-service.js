@@ -47,8 +47,33 @@ class AppService {
 
   /* Category */
 
-  getOneCategory(id) {
-    return this.httpService.get(`/categories/${id}`);
+  createCategory(details) {
+    return this.httpService.post(`/categories`, details);
+  }
+
+  getCategory(name) {
+    return this.httpService.get(`/categories?name=${name}`);
+  }
+
+  deleteCategory(id) {
+    return this.httpService.delete(`/categories/${id}`);
+  }
+
+  /* Team */
+
+  createOneTeam(details) {
+    return this.httpService.post(`/team`, details);
+  }
+  createManyTeams(json) {
+    return this.httpService.post(`/teams`, json);
+  }
+
+  deleteOneTeam(id) {
+    return this.httpService.delete(`/teams/${id}`);
+  }
+
+  deleteManyTeams() {
+    return this.httpService.delete(`/teams`);
   }
 
   /* Tournament */

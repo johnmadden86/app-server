@@ -40,48 +40,48 @@ exports.retrieve = async request => {
   try {
     switch (filter) {
       case 'all':
-        return Game.find({ tournament }).sort({ startTime: 1 }); // .populate('teams');
+        return Game.find({ tournament })
+          .sort({ startTime: 1 })
+          .populate('teams');
 
       case 'past':
-        return Game.find({ tournament, finishTime: { $lt: currentDate } }).sort(
-          {
-            startTime: 1
-          }
-        );
-      // .populate('teams');
+        return Game.find({ tournament, finishTime: { $lt: currentDate } })
+          .sort({ startTime: 1 })
+          .populate('teams');
 
       case 'future':
-        return Game.find({
-          tournament,
-          startTime: { $gt: currentDate }
-        }).sort({ startTime: 1 });
-      // .populate('teams');
+        return Game.find({ tournament, startTime: { $gt: currentDate } })
+          .sort({ startTime: 1 })
+          .populate('teams');
 
       case 'inPlay':
         return Game.find({
           tournament,
           startTime: { $lt: currentDate },
           finishTime: { $gt: currentDate }
-        }).sort({ startTime: 1 }); // .populate('teams');
+        })
+          .sort({ startTime: 1 })
+          .populate('teams');
 
       case 'prediction': {
         // find games with predictions
         const gameIds = await getGameIdsWithPredictions();
-        return Game.find({ _id: gameIds }).sort({
-          startTime: 1
-        }); // .populate('teams');
+        return Game.find({ _id: gameIds })
+          .sort({ startTime: 1 })
+          .populate('teams');
       }
       case 'noPrediction': {
         // find games without predictions
         const gameIds = await getGameIdsWithPredictions();
-        return Game.find({
-          _id: { $not: { $eq: gameIds } }
-        }).sort({ startTime: 1 }); // .populate('teams');
+        return Game.find({ _id: { $not: { $eq: gameIds } } })
+          .sort({ startTime: 1 })
+          .populate('teams');
       }
       default:
         // defaults to all
-        return Game.find({ tournament }).sort({ startTime: 1 });
-      // .populate('teams');
+        return Game.find({ tournament })
+          .sort({ startTime: 1 })
+          .populate('teams');
     }
   } catch (e) {
     return Boom.badImplementation(`error getting game: ${e}`);
@@ -189,7 +189,7 @@ exports.setResult = async request => {
       player => player._id
     );
 
-    const updatedScoresetsCorrect = await Promise.all(
+    const updatedScoreSetsCorrect = await Promise.all(
       predictionDataforUpdate.map(async prediction => {
         await Score.findOneAndUpdate(
           { player: prediction.player, tournament },
@@ -217,7 +217,7 @@ exports.setResult = async request => {
       updatedTournament,
       correctPredictions,
       incorrectPredictions,
-      updatedScoresetsCorrect,
+      updatedScoreSetsCorrect,
       updatedScoreSetsAbsent
     };
   } catch (e) {
@@ -250,23 +250,37 @@ exports.delete = async request => {
 const wcGames = require('../data/game-data');
 
 exports.insert = async () => {
+  function addHours(time, hours) {
+    return new Date(time + hours * 60 * 60 * 1000);
+  }
   try {
     const games = [];
     const tournament = await Tournament.findOne({ name: 'World Cup 2018' });
     for (let i = 0; i < wcGames.length; i += 1) {
+      const {
+        name,
+        stage,
+        teams,
+        gameNumber,
+        startTime,
+        winnerToGame,
+        runnerUpToGame
+      } = wcGames[i];
+
       // eslint-disable-next-line no-await-in-loop
-      const teams = await Team.find({ name: wcGames[i].teams });
-      const teamIds = [];
-      teams.forEach(team => {
-        teamIds.push(team._id);
-      });
+      const teamDocs = await Team.find({ name: teams });
+      const teamIds = teamDocs.map(team => team._id);
 
       const game = {
         tournament: tournament._id,
-        name: wcGames[i].name,
-        startTime: new Date(wcGames[i].startTime),
-        finishTime: new Date(wcGames[i].finishTime),
-        teams: teamIds
+        name,
+        stage,
+        gameNumber,
+        startTime: new Date(startTime),
+        finishTime: addHours(startTime, stage === 1 ? 2 : 3),
+        teams: teamIds,
+        winnerToGame,
+        runnerUpToGame
       };
       games.push(game);
     }

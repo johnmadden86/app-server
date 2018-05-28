@@ -28,8 +28,34 @@
   },
   "newTournament": {
     "name": "World Cup 2022",
-    "active": false,
-    "category": "5ad761a0a22d7a31b8f7512f"
+    "active": false
   },
-  "tournamentId": "5ad71fcf810c872d54bc9157"
+  "tournamentName": "World Cup 2018",
+  "categoryNames": [ "Soccer - Club", "Soccer - International" ],
+  "teams": [
+    {
+      "name": "Ireland",
+      "shortName": "IRL",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Ireland.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1609/full/596_-ireland-primary-.png"
+    },
+    {
+      "name": "Northern Ireland",
+      "shortName": "NIR",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Northern_Ireland.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1605/full/5536_northern_ireland_-primary-2011.png"
+    },
+    {
+      "name": "Scotland",
+      "shortName": "NIR",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Flag_of_Scotland.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1614/full/5102_scotland_-primary-2012.png"
+    },
+    {
+      "name": "Wales",
+      "shortName": "NIR",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Flag_of_Wales_2.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1623/full/we6t9kh3e0fbwojl1jxn.png"
+    }
+    ]
 }
