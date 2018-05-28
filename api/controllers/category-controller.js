@@ -12,7 +12,6 @@ exports.create = async request => {
 
 exports.retrieve = async (request, categoryName) => {
   const name = request.url ? request.url.query.name : categoryName;
-  console.log(`retrieve category + name: ${name}`);
   try {
     return Category.findOne({ name });
   } catch (e) {

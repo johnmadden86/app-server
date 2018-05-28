@@ -47,13 +47,13 @@
     },
     {
       "name": "Scotland",
-      "shortName": "NIR",
+      "shortName": "SCO",
       "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Flag_of_Scotland.svg",
       "crestUrl": "http://content.sportslogos.net/logos/60/1614/full/5102_scotland_-primary-2012.png"
     },
     {
       "name": "Wales",
-      "shortName": "NIR",
+      "shortName": "WAL",
       "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Flag_of_Wales_2.svg",
       "crestUrl": "http://content.sportslogos.net/logos/60/1623/full/we6t9kh3e0fbwojl1jxn.png"
     }

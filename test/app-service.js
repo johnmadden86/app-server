@@ -1,4 +1,5 @@
 const HttpSync = require('./http-sync');
+const queryString = require('querystring');
 
 class AppService {
   constructor(baseUrl) {
@@ -64,16 +65,18 @@ class AppService {
   createOneTeam(details) {
     return this.httpService.post(`/team`, details);
   }
+
   createManyTeams(json) {
     return this.httpService.post(`/teams`, json);
   }
 
   deleteOneTeam(id) {
-    return this.httpService.delete(`/teams/${id}`);
+    return this.httpService.delete(`/team/${id}`);
   }
 
-  deleteManyTeams() {
-    return this.httpService.delete(`/teams`);
+  deleteManyTeams(details) {
+    const query = queryString.stringify(details);
+    return this.httpService.delete(`/teams?${query}`);
   }
 
   /* Tournament */

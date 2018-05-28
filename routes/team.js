@@ -10,5 +10,15 @@ module.exports = [
     method: 'POST',
     path: '/teams',
     options: { handler: TeamController.createMany }
+  },
+  {
+    method: 'DELETE',
+    path: '/team/{id}',
+    options: { handler: TeamController.deleteOne }
+  },
+  {
+    method: 'DELETE',
+    path: '/teams',
+    options: { handler: TeamController.deleteMany }
   }
 ];

@@ -1,4 +1,5 @@
 const Boom = require('boom');
+const queryString = require('querystring');
 const categories = require('./category-controller');
 const Team = require('../models/team-model');
 
@@ -25,6 +26,24 @@ exports.createMany = async request => {
       return team;
     });
     return Team.collection.insert(teams);
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
+
+exports.deleteOne = async request => {
+  try {
+    return Team.remove({ _id: request.params.id });
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
+
+exports.deleteMany = async request => {
+  try {
+    const teamIds = Object.values(request.url.query);
+    console.log(teamIds);
+    return Team.remove({ _id: { $in: teamIds } });
   } catch (err) {
     return Boom.badImplementation(`error accessing db ${err}`);
   }

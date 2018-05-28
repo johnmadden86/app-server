@@ -15,12 +15,6 @@ suite('Team API tests', () => {
     const response = await appService.createPlayer(players[0]);
     playerId = response.player._id;
     appService.authenticate(players[0]);
-    const category = await appService.getCategory(categoryNames[1]);
-    teams.map(team => {
-      // eslint-disable-next-line no-param-reassign
-      team.category = category._id;
-      return team;
-    });
   });
 
   beforeEach(() => {
@@ -60,12 +54,12 @@ suite('Team API tests', () => {
   });
 
   test('delete one', async () => {
-    const team = await appService.createOneTeam({
-      category: categoryNames[1],
-      team: teams[0]
-    });
-    assert.isDefined(team._id, team.__v);
-    assert.containsAllKeys(team, keys);
-    teamId = team._id;
+    const category = await appService.deleteOneTeam(teamId);
+    assert.equal(category, 200);
+  });
+
+  test('delete many', async () => {
+    const category = await appService.deleteManyTeams(teamIds);
+    assert.equal(category, 200);
   });
 });
