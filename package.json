@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^2.0.1",
     "bell": "^9.1.0",
     "boom": "^7.1.1",
     "dotenv": "^5.0",
@@ -37,6 +37,6 @@
     "eslint-plugin-prettier": "^2.6.0",
     "mocha": "^5.0.1",
     "prettier": "^1.12.1",
-    "sync-request": "^5.0.0"
+    "sync-request": "^6.0.0"
   }
 }

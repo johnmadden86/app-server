@@ -40,22 +40,24 @@ exports.retrieve = async request => {
   try {
     switch (filter) {
       case 'all':
-        return Game.find({ tournament }).sort({ startTime: 1 }); // .populate('teams');
+        return Game.find({ tournament })
+          .sort({ startTime: 1 })
+          .populate('teams');
 
       case 'past':
-        return Game.find({ tournament, finishTime: { $lt: currentDate } }).sort(
-          {
+        return Game.find({ tournament, finishTime: { $lt: currentDate } })
+          .sort({
             startTime: 1
-          }
-        );
-      // .populate('teams');
+          })
+          .populate('teams');
 
       case 'future':
         return Game.find({
           tournament,
           startTime: { $gt: currentDate }
-        }).sort({ startTime: 1 });
-      // .populate('teams');
+        })
+          .sort({ startTime: 1 })
+          .populate('teams');
 
       case 'inPlay':
         return Game.find({
@@ -67,9 +69,11 @@ exports.retrieve = async request => {
       case 'prediction': {
         // find games with predictions
         const gameIds = await getGameIdsWithPredictions();
-        return Game.find({ _id: gameIds }).sort({
-          startTime: 1
-        }); // .populate('teams');
+        return Game.find({ _id: gameIds })
+          .sort({
+            startTime: 1
+          })
+          .populate('teams');
       }
       case 'noPrediction': {
         // find games without predictions
@@ -80,8 +84,9 @@ exports.retrieve = async request => {
       }
       default:
         // defaults to all
-        return Game.find({ tournament }).sort({ startTime: 1 });
-      // .populate('teams');
+        return Game.find({ tournament })
+          .sort({ startTime: 1 })
+          .populate('teams');
     }
   } catch (e) {
     return Boom.badImplementation(`error getting game: ${e}`);
