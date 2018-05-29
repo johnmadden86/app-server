@@ -1,15 +1,55 @@
 const Boom = require('boom');
+const queryString = require('querystring');
+const categories = require('./category-controller');
 const Team = require('../models/team-model');
 
-exports.create = async request => {
+exports.createOne = async request => {
   try {
-    return new Team(request.payload).save();
-    // http://www.countryflags.io/be/flat/64.png
+    let { category } = request.payload;
+    const { team } = request.payload;
+    category = await categories.retrieve('', category);
+    team.category = category._id;
+    return new Team(team).save();
   } catch (e) {
     return Boom.badImplementation(`error creating team: ${e}`);
   }
 };
 
+exports.createMany = async request => {
+  try {
+    let { category } = request.payload.upload;
+    const { teams } = request.payload.upload;
+    category = await categories.retrieve('', category);
+    teams.map(team => {
+      // eslint-disable-next-line no-param-reassign
+      team.category = category._id;
+      return team;
+    });
+    return Team.collection.insert(teams);
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
+
+exports.deleteOne = async request => {
+  try {
+    return Team.remove({ _id: request.params.id });
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
+
+exports.deleteMany = async request => {
+  try {
+    const teamIds = Object.values(request.url.query);
+    console.log(teamIds);
+    return Team.remove({ _id: { $in: teamIds } });
+  } catch (err) {
+    return Boom.badImplementation(`error accessing db ${err}`);
+  }
+};
+
+/*
 exports.findByName = async request => {
   try {
     const { team } = request.url.query;
@@ -54,20 +94,4 @@ exports.delete = async request => {
     return Boom.badImplementation(`error accessing db ${err}`);
   }
 };
-
-const { teams } = require('../data/wc-teams');
-
-exports.insert = async () => {
-  try {
-    const wcTeams = teams.map(team => ({
-      name: team.name,
-      shortName: team.code,
-      category: '5ad761a0a22d7a31b8f7512f',
-      flag: team.crestUrl
-    }));
-
-    return Team.collection.insert(wcTeams);
-  } catch (err) {
-    return Boom.badImplementation(`error accessing db ${err}`);
-  }
-};
+*/

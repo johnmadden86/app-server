@@ -8,13 +8,8 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/categories/{id}',
-    options: { handler: CategoryController.retrieveOne }
-  },
-  {
-    method: 'GET',
     path: '/categories',
-    options: { handler: CategoryController.retrieveAll }
+    options: { handler: CategoryController.retrieve }
   },
   {
     method: 'DELETE',

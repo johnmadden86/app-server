@@ -45,9 +45,10 @@ class HttpSync {
     return returnedObj;
   }
 
-  delete(url) {
+  delete(url, obj) {
     const res = request('DELETE', this.baseUrl + url, {
-      headers: this.authHeader
+      headers: this.authHeader,
+      json: obj
     });
     return res.statusCode;
   }

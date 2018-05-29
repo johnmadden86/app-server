@@ -6,7 +6,7 @@ const local = 'localhost';
 
 const dbURI = `mongodb://${local}/app-server`;
 
-mongoose.connect(dbURI);
+mongoose.connect(dbURI).then(() => { console.log('Connected to Mongo server'); }, (err) => { console.log(err); });
 
 mongoose.connection.on('error', err => {
   console.log(`Mongoose connection error: ${err}`);
@@ -19,18 +19,3 @@ mongoose.connection.on('disconnected', () => {
 mongoose.connection.on('connected', async () => {
   console.log(`Mongoose connected to ${dbURI}`);
 });
-/*
-   seeder.connect(dbURI, () => {
-     seeder.loadModels([
-       'api/models/player-model',
-       'api/models/league-model',
-       'api/models/game-model',
-       'api/models/prediction-model',
-     ]);
-     seeder.clearModels(['Player', 'League', 'Game', 'Prediction'], () => {
-       seeder.populateModels(data, () => {
-         seeder.disconnect();
-       });
-     });
-   });
-   */
