@@ -1,6 +1,6 @@
 const Boom = require('boom');
-const League = require('../models/league-model');
-const Tournament = require('../models/tournament-model');
+const League = require('../../models/league-model');
+const Tournament = require('../../models/tournament-model');
 const Utils = require('./auth-controller');
 
 exports.create = async request => {

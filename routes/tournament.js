@@ -1,4 +1,4 @@
-const TournamentController = require('../api/controllers/tournament-controller');
+const TournamentController = require('../api/controllers/requests/tournament');
 
 module.exports = [
   {

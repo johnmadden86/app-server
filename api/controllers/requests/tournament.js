@@ -1,5 +1,6 @@
 const Boom = require('boom');
-const Tournament = require('../models/tournament-model');
+const Tournament = require('../../models/tournament-model');
+const TournamentHelper = require('../helpers/tournament');
 
 exports.create = async request => {
   try {
@@ -12,7 +13,7 @@ exports.create = async request => {
 
 exports.retrieveOne = request => {
   try {
-    return Tournament.findOne({ _id: request.params.id });
+    return TournamentHelper.retrieveOneById(request.params.id);
   } catch (e) {
     return Boom.badImplementation(`error getting tournament: ${e}`);
   }
@@ -20,24 +21,9 @@ exports.retrieveOne = request => {
 
 exports.retrieveAll = () => {
   try {
-    return Tournament.find({})
-      .sort({ name: 1 })
-      .populate('games');
+    return Tournament.find({}).sort({ name: 1 });
   } catch (e) {
     return Boom.badImplementation(`error getting tournaments: ${e}`);
-  }
-};
-
-exports.setActive = async request => {
-  try {
-    const tournament = await Tournament.findOne({ _id: request.params.id });
-    return Tournament.update(
-      { _id: request.params.id },
-      { active: !tournament.active },
-      { new: true }
-    );
-  } catch (e) {
-    return Boom.badImplementation(`error getting tournament: ${e}`);
   }
 };
 

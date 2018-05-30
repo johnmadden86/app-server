@@ -1,4 +1,4 @@
-const PredictionController = require('../api/controllers/prediction-controller');
+const PredictionController = require('../api/controllers/requests/prediction');
 
 module.exports = [
   {
@@ -13,17 +13,7 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/predictions/games',
-    options: { handler: PredictionController.retrieveGamesWithPrediction }
-  },
-  {
-    method: 'POST',
-    path: '/predictions/resolve',
-    options: { handler: PredictionController.resolve }
-  },
-  {
-    method: 'POST',
-    path: '/predictions/missed',
-    options: { handler: PredictionController.missed }
+    path: '/prediction/{game}',
+    options: { handler: PredictionController.retrieveOne }
   }
 ];

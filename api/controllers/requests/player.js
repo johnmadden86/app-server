@@ -2,7 +2,7 @@ const Utils = require('./auth-controller');
 
 const bCrypt = require('bcrypt');
 const Boom = require('boom');
-const Player = require('../models/player-model');
+const Player = require('../../models/player-model');
 
 const saltRounds = 12;
 

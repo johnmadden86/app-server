@@ -1,4 +1,4 @@
-const CategoryController = require('../api/controllers/category-controller');
+const CategoryController = require('../api/controllers/requests/category');
 
 module.exports = [
   {

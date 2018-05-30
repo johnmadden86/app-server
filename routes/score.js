@@ -1,4 +1,4 @@
-const ScoreController = require('../api/controllers/score-controller');
+const ScoreController = require('../api/controllers/requests/score');
 
 module.exports = [
   {

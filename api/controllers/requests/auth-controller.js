@@ -1,6 +1,6 @@
 const Boom = require('boom');
 const jwt = require('jsonwebtoken');
-const Player = require('../models/player-model');
+const Player = require('../../models/player-model');
 
 exports.schemeName = 'schemeName';
 exports.strategyName = 'strategyName';

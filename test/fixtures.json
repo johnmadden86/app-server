@@ -28,7 +28,8 @@
   },
   "newTournament": {
     "name": "World Cup 2022",
-    "active": false
+    "events": 24,
+    "logoUrl": "placeholder"
   },
   "tournamentName": "World Cup 2018",
   "categoryNames": [ "Soccer - Club", "Soccer - International" ],
