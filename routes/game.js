@@ -1,10 +1,15 @@
-const GameController = require('../api/controllers/game-controller');
+const GameController = require('../api/controllers/requests/game');
 
 module.exports = [
   {
     method: 'POST',
+    path: '/game',
+    options: { handler: GameController.createOne }
+  },
+  {
+    method: 'POST',
     path: '/games',
-    options: { handler: GameController.create }
+    options: { handler: GameController.createMany }
   },
   {
     method: 'GET',
@@ -15,15 +20,5 @@ module.exports = [
     method: 'POST',
     path: '/games/result',
     options: { handler: GameController.setResult }
-  },
-  {
-    method: 'POST',
-    path: '/games/fixture',
-    options: { handler: GameController.updateFixture }
-  },
-  {
-    method: 'GET',
-    path: '/games/insert',
-    options: { handler: GameController.insert }
   }
 ];

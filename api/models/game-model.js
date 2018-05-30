@@ -4,6 +4,7 @@ const gameSchema = mongoose.Schema({
   tournament: { type: mongoose.Schema.Types.ObjectId, ref: 'Tournament' },
   name: String, // e.g. groupA, quarterFinal2 etc.
   stage: Number,
+  gameNumber: Number,
   teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Team' }],
   startTime: Date,
   finishTime: Date,

@@ -1,5 +1,5 @@
-const LeagueController = require('../api/controllers/league-controller');
-const Validate = require('../api/controllers/input-validation');
+const LeagueController = require('../api/controllers/requests/league-controller');
+const Validate = require('../api/controllers/requests/input-validation');
 
 module.exports = [
   {

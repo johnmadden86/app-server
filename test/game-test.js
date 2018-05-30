@@ -3,13 +3,12 @@ const { assert } = require('chai');
 const AppService = require('./app-service');
 const fixtures = require('./fixtures');
 
-const { server, players, newTournament, categoryNames } = fixtures;
+const { server, players } = fixtures;
 const newPlayer = players[0];
 const appService = new AppService(server);
 let playerId;
-let newTournamentId;
 
-suite('Tournament API tests', () => {
+suite('Game API tests', () => {
   before(async () => {
     const player = await appService.createPlayer(newPlayer);
     playerId = player._id;
@@ -19,39 +18,15 @@ suite('Tournament API tests', () => {
     appService.authenticate(newPlayer);
   });
 
-  after(() => {
-    appService.authenticate(newPlayer);
-    // auth required for deletion
-    appService.deleteTournament(newTournamentId);
-    appService.deleteOnePlayer(playerId);
-  });
+  after(() => {});
 
-  test('create', async () => {
-    const category = await appService.getCategory(categoryNames[1]);
-    newTournament.category = category._id;
-    const tournament = await appService.createTournament(newTournament);
-    assert.isDefined(tournament._id, tournament.__v);
-    assert.containsAllKeys(tournament, [
-      'name',
-      'active',
-      'category',
-      'events',
-      'eventsComplete',
-      'logoUrl'
-    ]);
-    newTournamentId = tournament._id;
-  });
+  test('create one', async () => {});
 
-  test('get one', async () => {
-    const tournament = await appService.getOneTournament(newTournamentId);
-    assert.isDefined(tournament._id, tournament.__v);
-    assert.containsAllKeys(tournament, [
-      'name',
-      'active',
-      'category',
-      'events',
-      'eventsComplete',
-      'logoUrl'
-    ]);
-  });
+  test('create many', async () => {});
+
+  test('get one', async () => {});
+
+  test('get by filter', async () => {});
+
+  test('set result', async () => {});
 });

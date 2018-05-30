@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
 const tournamentSchema = mongoose.Schema({
-  name: String,
-  active: Boolean,
-  events: Number,
-  eventsComplete: Number,
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
-  logo: String
+  name: { type: String, required: true },
+  active: { type: Boolean, default: false },
+  events: { type: Number, required: true },
+  eventsComplete: { type: Number, default: 0 },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true
+  },
+  logoUrl: String
 });
 
 module.exports = mongoose.model('Tournament', tournamentSchema);

@@ -1,6 +1,6 @@
 const Hapi = require('hapi');
 const bell = require('bell');
-const Auth = require('./api/controllers/auth-controller');
+const Auth = require('./api/controllers/requests/auth-controller');
 
 const routes = require('require.all')('./routes');
 

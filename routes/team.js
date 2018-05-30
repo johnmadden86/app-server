@@ -1,4 +1,4 @@
-const TeamController = require('../api/controllers/team-controller');
+const TeamController = require('../api/controllers/requests/team');
 
 module.exports = [
   {

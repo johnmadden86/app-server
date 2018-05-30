@@ -1,622 +1,197 @@
 {
-  "_links": {
-    "self": {
-      "href": "http://api.football-data.org/v1/competitions/467/teams"
-    },
-    "competition": {
-      "href": "http://api.football-data.org/v1/competitions/467"
-    }
-  },
-  "count": 32,
-  "categoryName": "Soccer - International",
-  "teams": [
+  "category":"Soccer - International",
+  "teams":[
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/808"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/808/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/808/players"
-        }
-      },
-      "name": "Russia",
-      "code": "RUS",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1611/full/577_-russia-primary-2011.gif"
+      "name":"Russia",
+      "shortName":"RUS",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1611/full/577_-russia-primary-2011.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/801"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/801/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/801/players"
-        }
-      },
-      "name": "Saudi Arabia",
-      "code": "KSA",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
-      "crest": "http://content.sportslogos.net/logos/55/1520/full/8378__saudi_arabia-primary-2012.png"
+      "name":"Saudi Arabia",
+      "shortName":"KSA",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/55/1520/full/8378__saudi_arabia-primary-2012.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/825"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/825/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/825/players"
-        }
-      },
-      "name": "Egypt",
-      "code": "EGY",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
-      "crest": "http://content.sportslogos.net/logos/56/2030/full/j15id4fuvg92c7hnh182.gif"
+      "name":"Egypt",
+      "shortName":"EGY",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/56/2030/full/j15id4fuvg92c7hnh182.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/758"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/758/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/758/players"
-        }
-      },
-      "name": "Uruguay",
-      "code": "URU",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
-      "crest": "http://content.sportslogos.net/logos/58/1983/full/9821_uruguay_-primary-0.png"
+      "name":"Uruguay",
+      "shortName":"URU",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/58/1983/full/9821_uruguay_-primary-0.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/815"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/815/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/815/players"
-        }
-      },
-      "name": "Morocco",
-      "code": "MAR",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg",
-      "crest": "http://content.sportslogos.net/logos/56/2058/full/k172faqc736ihlvews55.gif"
+      "name":"Morocco",
+      "shortName":"MAR",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/56/2058/full/k172faqc736ihlvews55.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/840"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/840/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/840/players"
-        }
-      },
-      "name": "Iran",
-      "code": "IRN",
-      "shortName": "Iran",
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg",
-      "crest": "http://content.sportslogos.net/logos/55/1498/full/9105__iran-primary-1979.png"
+      "name":"Iran",
+      "shortName":"IRN",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/55/1498/full/9105__iran-primary-1979.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/765"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/765/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/765/players"
-        }
-      },
-      "name": "Portugal",
-      "code": "POR",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1608/full/v15suvcxfqmet97dafhg.gif"
+      "name":"Portugal",
+      "shortName":"POR",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1608/full/v15suvcxfqmet97dafhg.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/760"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/760/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/760/players"
-        }
-      },
-      "name": "Spain",
-      "code": "ESP",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1618/full/286_-spain-secondary-.gif"
+      "name":"Spain",
+      "shortName":"ESP",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1618/full/286_-spain-secondary-.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/773"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/773/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/773/players"
-        }
-      },
-      "name": "France",
-      "code": "FRA",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1589/full/732_-france-primary-2008.gif"
+      "name":"France",
+      "shortName":"FRA",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1589/full/732_-france-primary-2008.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/779"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/779/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/779/players"
-        }
-      },
-      "name": "Australia",
-      "code": "AUS",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
-      "crest": "http://content.sportslogos.net/logos/55/2011/full/706_-australia-primary-.gif"
+      "name":"Australia",
+      "shortName":"AUS",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/55/2011/full/706_-australia-primary-.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/762"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/762/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/762/players"
-        }
-      },
-      "name": "Argentina",
-      "code": "ARG",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
-      "crest": "http://content.sportslogos.net/logos/58/1975/full/8738__argentina-primary-0.png"
+      "name":"Argentina",
+      "shortName":"ARG",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/58/1975/full/8738__argentina-primary-0.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/1066"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/1066/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/1066/players"
-        }
-      },
-      "name": "Iceland",
-      "code": "ISL",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Iceland.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1594/full/908_-iceland-primary-.gif"
+      "name":"Iceland",
+      "shortName":"ISL",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Iceland.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1594/full/908_-iceland-primary-.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/832"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/832/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/832/players"
-        }
-      },
-      "name": "Peru",
-      "code": "PER",
-      "shortName": "Peru",
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Peru_%28state%29.svg",
-      "crest": "http://content.sportslogos.net/logos/58/1982/full/6059__peru-primary-2015.png"
+      "name":"Peru",
+      "shortName":"PER",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Peru_%28state%29.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/58/1982/full/6059__peru-primary-2015.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/782"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/782/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/782/players"
-        }
-      },
-      "name": "Denmark",
-      "code": "DEN",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Denmark.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1583/full/k1js56fwjkbu5fi8ejaj.gif"
+      "name":"Denmark",
+      "shortName":"DEN",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Denmark.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1583/full/k1js56fwjkbu5fi8ejaj.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/799"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/799/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/799/players"
-        }
-      },
-      "name": "Croatia",
-      "code": "CRO",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1578/full/6427.gif"
+      "name":"Croatia",
+      "shortName":"CRO",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1578/full/6427.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/776"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/776/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/776/players"
-        }
-      },
-      "name": "Nigeria",
-      "code": "NGA",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
-      "crest": "http://content.sportslogos.net/logos/56/2062/full/pgtiu7xdsl0f62hpa84a.gif"
+      "name":"Nigeria",
+      "shortName":"NGA",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/56/2062/full/pgtiu7xdsl0f62hpa84a.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/793"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/793/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/793/players"
-        }
-      },
-      "name": "Costa Rica",
-      "code": "CRC",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Costa_Rica_%28state%29.svg",
-      "crest": "http://content.sportslogos.net/logos/57/1541/full/rygzb02zwepgcdz8jeqm.gif"
+      "name":"Costa Rica",
+      "shortName":"CRC",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Costa_Rica_%28state%29.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/57/1541/full/rygzb02zwepgcdz8jeqm.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/780"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/780/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/780/players"
-        }
-      },
-      "name": "Serbia",
-      "code": "SRB",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Flag_of_Serbia.svg",
-      "crest": "http://content.sportslogos.net/logos/60/4176/full/577_-serbia-primary-.gif"
+      "name":"Serbia",
+      "shortName":"SRB",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/f/ff/Flag_of_Serbia.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/4176/full/577_-serbia-primary-.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/759"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/759/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/759/players"
-        }
-      },
-      "name": "Germany",
-      "code": "GER",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1591/full/9005_germany_-primary-2008.png"
+      "name":"Germany",
+      "shortName":"GER",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1591/full/9005_germany_-primary-2008.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/769"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/769/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/769/players"
-        }
-      },
-      "name": "Mexico",
-      "code": "MEX",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
-    "crest": "http://content.sportslogos.net/logos/57/1552/full/6329.gif"
+      "name":"Mexico",
+      "shortName":"MEX",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/57/1552/full/6329.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/764"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/764/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/764/players"
-        }
-      },
-      "name": "Brazil",
-      "code": "BRA",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
-      "crest": "http://content.sportslogos.net/logos/58/1977/full/116_-brazil-primary-.png"
+      "name":"Brazil",
+      "shortName":"BRA",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/58/1977/full/116_-brazil-primary-.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/788"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/788/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/788/players"
-        }
-      },
-      "name": "Switzerland",
-      "code": "SUI",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/0/08/Flag_of_Switzerland_(Pantone).svg",
-      "crest": "http://content.sportslogos.net/logos/60/1620/full/s41innpdn9ai4mhy19j6.gif"
+      "name":"Switzerland",
+      "shortName":"SUI",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/0/08/Flag_of_Switzerland_(Pantone).svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1620/full/s41innpdn9ai4mhy19j6.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/792"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/792/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/792/players"
-        }
-      },
-      "name": "Sweden",
-      "code": "SWE",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/4/4c/Flag_of_Sweden.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1619/full/dy2lwneinnfbgliyr8zf.gif"
+      "name":"Sweden",
+      "shortName":"SWE",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/4/4c/Flag_of_Sweden.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1619/full/dy2lwneinnfbgliyr8zf.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/772"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/772/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/772/players"
-        }
-      },
-      "name": "South Korea",
-      "code": "KOR",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
-      "crest": "http://content.sportslogos.net/logos/55/1504/full/4882__korea_republic-primary-2000.png"
+      "name":"South Korea",
+      "shortName":"KOR",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/55/1504/full/4882__korea_republic-primary-2000.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/805"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/805/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/805/players"
-        }
-      },
-      "name": "Belgium",
-      "code": "BEL",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1575/full/6888_belgium_-primary-2013.gif"
+      "name":"Belgium",
+      "shortName":"BEL",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1575/full/6888_belgium_-primary-2013.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/1836"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/1836/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/1836/players"
-        }
-      },
-      "name": "Panama",
-      "code": "PAN",
-      "shortName": "Panama",
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Flag_of_Panama.svg",
-      "crest": "http://content.sportslogos.net/logos/57/1556/full/zr3f6bd2pzs2pgfhii5p.gif"
+      "name":"Panama",
+      "shortName":"PAN",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/a/ab/Flag_of_Panama.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/57/1556/full/zr3f6bd2pzs2pgfhii5p.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/802"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/802/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/802/players"
-        }
-      },
-      "name": "Tunisia",
-      "code": "TUN",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Tunisia.svg",
-      "crest": "http://content.sportslogos.net/logos/56/2074/full/cav6cg0s4x5sdzmynb7v.gif"
+      "name":"Tunisia",
+      "shortName":"TUN",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Tunisia.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/56/2074/full/cav6cg0s4x5sdzmynb7v.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/770"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/770/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/770/players"
-        }
-      },
-      "name": "England",
-      "code": "ENG",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1584/full/807_-england-primary-.gif"
+      "name":"England",
+      "shortName":"ENG",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1584/full/807_-england-primary-.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/818"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/818/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/818/players"
-        }
-      },
-      "name": "Colombia",
-      "code": "COL",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
-      "crest": "http://content.sportslogos.net/logos/58/1979/full/250_-columbia-primary-.png"
+      "name":"Colombia",
+      "shortName":"COL",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/58/1979/full/250_-columbia-primary-.png"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/766"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/766/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/766/players"
-        }
-      },
-      "name": "Japan",
-      "code": "JPN",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
-      "crest": "http://content.sportslogos.net/logos/55/1501/full/821_-japan-primary-.gif"
+      "name":"Japan",
+      "shortName":"JPN",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/55/1501/full/821_-japan-primary-.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/794"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/794/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/794/players"
-        }
-      },
-      "name": "Poland",
-      "code": "POL",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg",
-      "crest": "http://content.sportslogos.net/logos/60/1607/full/oyfvf2xvh4a847wefifl.gif"
+      "name":"Poland",
+      "shortName":"POL",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/60/1607/full/oyfvf2xvh4a847wefifl.gif"
     },
     {
-      "_links": {
-        "self": {
-          "href": "http://api.football-data.org/v1/teams/804"
-        },
-        "fixtures": {
-          "href": "http://api.football-data.org/v1/teams/804/fixtures"
-        },
-        "players": {
-          "href": "http://api.football-data.org/v1/teams/804/players"
-        }
-      },
-      "name": "Senegal",
-      "code": "SEN",
-      "shortName": null,
-      "squadMarketValue": null,
-      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg",
-      "crest": "http://content.sportslogos.net/logos/56/2065/full/eq2bcpfo5k0evgagaj1i.gif"
+      "name":"Senegal",
+      "shortName":"SEN",
+      "flagUrl":"https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg",
+      "crestUrl":"http://content.sportslogos.net/logos/56/2065/full/eq2bcpfo5k0evgagaj1i.gif"
     }
   ]
 }

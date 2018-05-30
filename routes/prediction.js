@@ -1,4 +1,4 @@
-const PredictionController = require('../api/controllers/prediction-controller');
+const PredictionController = require('../api/controllers/requests/prediction');
 
 module.exports = [
   {

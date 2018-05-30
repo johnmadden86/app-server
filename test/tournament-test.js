@@ -3,7 +3,7 @@ const { assert } = require('chai');
 const AppService = require('./app-service');
 const fixtures = require('./fixtures');
 
-const { server, players, newTournament, tournamentId } = fixtures;
+const { server, players, newTournament, categoryNames } = fixtures;
 const newPlayer = players[0];
 const appService = new AppService(server);
 let playerId;
@@ -26,16 +26,32 @@ suite('Tournament API tests', () => {
     appService.deleteOnePlayer(playerId);
   });
 
-  test('get one', async () => {
-    const tournament = await appService.getOneTournament(tournamentId);
-    assert.isDefined(tournament._id, tournament.__v);
-    assert.containsAllKeys(tournament, ['name', 'active', 'category']);
-  });
-
   test('create', async () => {
+    const category = await appService.getCategory(categoryNames[1]);
+    newTournament.category = category._id;
     const tournament = await appService.createTournament(newTournament);
     assert.isDefined(tournament._id, tournament.__v);
-    assert.containsAllKeys(tournament, ['name', 'active', 'category']);
+    assert.containsAllKeys(tournament, [
+      'name',
+      'active',
+      'category',
+      'events',
+      'eventsComplete',
+      'logoUrl'
+    ]);
     newTournamentId = tournament._id;
+  });
+
+  test('get one', async () => {
+    const tournament = await appService.getOneTournament(newTournamentId);
+    assert.isDefined(tournament._id, tournament.__v);
+    assert.containsAllKeys(tournament, [
+      'name',
+      'active',
+      'category',
+      'events',
+      'eventsComplete',
+      'logoUrl'
+    ]);
   });
 });

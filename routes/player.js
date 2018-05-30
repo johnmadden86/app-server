@@ -1,5 +1,5 @@
-const PlayerController = require('../api/controllers/player-controller');
-const Validate = require('../api/controllers/input-validation');
+const PlayerController = require('../api/controllers/requests/player');
+const Validate = require('../api/controllers/requests/input-validation');
 
 module.exports = [
   {
