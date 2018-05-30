@@ -220,6 +220,7 @@ exports.setResult = async request => {
     return {
       updatedGame,
       nextRoundGames,
+      // test helpers for below
       updatedTournament,
       correctPredictions,
       incorrectPredictions,

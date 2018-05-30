@@ -1,11 +1,14 @@
 const Boom = require('boom');
 const TournamentHelper = require('../helpers/tournament');
+
 const Score = require('../../models/score-model');
+
 const Utils = require('./auth-controller');
 
 exports.createOrRetrieve = async request => {
   try {
     const player = await Utils.getPlayerIdFromRequest(request);
+    console.log(player);
     const { tournamentId } = request.url.query;
     const tournament = await TournamentHelper.retrieveOneById(tournamentId);
     const weightingsRemaining = [];
@@ -14,7 +17,16 @@ exports.createOrRetrieve = async request => {
     }
     return Score.findOneAndUpdate(
       { player, tournament: tournamentId },
-      { $setOnInsert: { weightingsRemaining } },
+      {
+        $setOnInsert: {
+          weightingsRemaining,
+          weightingsUsed: [],
+          pointsScored: 0,
+          pointsUsed: 0,
+          correctPredictions: 0,
+          totalPredictions: 0
+        }
+      },
       { upsert: true, new: true }
     );
   } catch (e) {
