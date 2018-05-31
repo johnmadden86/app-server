@@ -14,14 +14,14 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^2.0.1",
-    "bell": "^9.3.0",
+    "bell": "^9.3.1",
     "boom": "^7.2.0",
     "dotenv": "^5.0",
     "fs": "^0.0.1-security",
-    "hapi": "^17.5.0",
+    "hapi": "^17.5.1",
     "hapi-auth-jwt2": "github:salzhrani/hapi-auth-jwt2#v-17",
     "joi": "^13.3.0",
-    "jsonwebtoken": "^8.2.1",
+    "jsonwebtoken": "^8.2.2",
     "mongoose": "^5.1.3",
     "mongoose-seed": "^0.4.1",
     "require.all": "^2.0.4"
@@ -36,7 +36,7 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-prettier": "^2.6.0",
     "mocha": "^5.2.0",
-    "prettier": "^1.13.2",
+    "prettier": "^1.13.3",
     "sync-request": "^6.0.0"
   }
 }

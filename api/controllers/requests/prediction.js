@@ -46,7 +46,6 @@ exports.retrieve = async request => {
 exports.retrieveOne = async request => {
   try {
     const player = await Utils.getPlayerIdFromRequest(request);
-    console.log(request);
     const { game } = request.params;
     return Prediction.findOne({ player, game }).populate('team');
   } catch (e) {

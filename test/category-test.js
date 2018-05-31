@@ -1,6 +1,7 @@
 const { after, before, beforeEach, suite, test } = require('mocha');
 const { assert } = require('chai');
 const AppService = require('./app-service');
+const Helpers = require('../api/controllers/helpers/category');
 const fixtures = require('./fixtures');
 
 const { server, players, categoryNames } = fixtures;

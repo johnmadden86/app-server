@@ -8,7 +8,6 @@ const Utils = require('./auth-controller');
 exports.createOrRetrieve = async request => {
   try {
     const player = await Utils.getPlayerIdFromRequest(request);
-    console.log(player);
     const { tournamentId } = request.url.query;
     const tournament = await TournamentHelper.retrieveOneById(tournamentId);
     const weightingsRemaining = [];

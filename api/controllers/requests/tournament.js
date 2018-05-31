@@ -4,7 +4,6 @@ const TournamentHelper = require('../helpers/tournament');
 
 exports.create = async request => {
   try {
-    console.log(request.payload);
     return new Tournament(request.payload).save();
   } catch (e) {
     return Boom.badImplementation(`error creating tournament: ${e}`);
