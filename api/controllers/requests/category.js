@@ -1,7 +1,8 @@
 const Boom = require('boom');
 const Category = require('../../models/category-model');
+const CategoryHelper = require('../helpers/category');
 
-exports.create = async request => {
+exports.create = request => {
   try {
     const category = new Category(request.payload);
     return category.save();
@@ -10,24 +11,16 @@ exports.create = async request => {
   }
 };
 
-exports.retrieve = async request => {
-  const { name } = request.url.query;
+exports.retrieve = request => {
   try {
-    return Category.findOne({ name });
+    const { name } = request.url.query;
+    return CategoryHelper.retrieveByName(name);
   } catch (e) {
     return Boom.badImplementation(`error finding category: ${e}`);
   }
 };
 
-exports.retrieveByName = async name => {
-  try {
-    return Category.findOne({ name });
-  } catch (e) {
-    return Boom.badImplementation(`error finding category: ${e}`);
-  }
-};
-
-exports.delete = async request => {
+exports.delete = request => {
   try {
     return Category.remove({ _id: request.params.id });
   } catch (err) {

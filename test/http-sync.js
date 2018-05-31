@@ -52,6 +52,18 @@ class HttpSync {
     });
     return res.statusCode;
   }
+
+  patch(url, obj) {
+    let returnedObj = null;
+    const res = request('PATCH', this.baseUrl + url, {
+      json: obj,
+      headers: this.authHeader
+    });
+    if (res.statusCode < 300) {
+      returnedObj = JSON.parse(res.getBody('utf8'));
+    }
+    return returnedObj;
+  }
 }
 
 module.exports = HttpSync;

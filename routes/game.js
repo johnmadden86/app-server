@@ -13,12 +13,17 @@ module.exports = [
   },
   {
     method: 'GET',
+    path: '/game/{id}',
+    options: { handler: GameController.retrieveOne }
+  },
+  {
+    method: 'GET',
     path: '/games',
     options: { handler: GameController.retrieve }
   },
   {
-    method: 'POST',
-    path: '/games/result',
+    method: 'PATCH',
+    path: '/game',
     options: { handler: GameController.setResult }
   }
 ];

@@ -17,6 +17,7 @@ exports.createOne = async request => {
   }
 };
 
+// create many games, upload json file
 exports.createMany = async request => {
   try {
     let { tournament } = request.payload.upload;
@@ -33,9 +34,13 @@ exports.createMany = async request => {
         winnerToGame,
         runnerUpToGame
       } = games[i];
+      let { finishTime } = games[i];
 
-      const finishTime =
-        new Date(startTime).getTime() + (stage === 1 ? 2 : 3) * 60 * 60 * 1000;
+      if (!finishTime) {
+        finishTime =
+          new Date(startTime).getTime() +
+          (stage === 1 ? 2 : 3) * 60 * 60 * 1000;
+      }
 
       // eslint-disable-next-line no-await-in-loop
       const teamDocs = await TeamHelper.findByName(teams);
@@ -69,6 +74,7 @@ exports.retrieveOne = async request => {
   }
 };
 
+// retrieve filtered list of games
 exports.retrieve = async request => {
   const currentDate = new Date();
   const player = await Utils.getPlayerIdFromRequest(request);
@@ -122,7 +128,7 @@ exports.retrieve = async request => {
       case 'noPrediction': {
         // find games in tournament without predictions
         const gameIds = await getGameIdsWithPredictions();
-        return Game.find({ _id: { $nin: gameIds } }, tournament)
+        return Game.find({ _id: { $nin: gameIds }, tournament })
           .sort({ startTime: 1 })
           .populate('teams');
       }
@@ -137,8 +143,10 @@ exports.retrieve = async request => {
   }
 };
 
+// set game result and update relevant data
 exports.setResult = async request => {
   // TODO
+  // no input before finish time
   // verify winner and runner-up come from the right group/game
   // verify winner and runner-up are not the same
 
@@ -156,7 +164,7 @@ exports.setResult = async request => {
     if (updatedGame.winnerToGame) {
       nextRoundGames.a = await Game.findOneAndUpdate(
         { gameNumber: updatedGame.winnerToGame },
-        { teams: { $addToSet: updatedGame.winner } },
+        { $addToSet: { teams: updatedGame.winner } },
         { new: true }
       );
     }
@@ -164,7 +172,7 @@ exports.setResult = async request => {
     if (updatedGame.runnerUpToGame) {
       nextRoundGames.b = await Game.findOneAndUpdate(
         { gameNumber: updatedGame.runnerUpToGame },
-        { teams: { $addToSet: updatedGame.runnerUp } },
+        { $addToSet: { teams: updatedGame.runnerUp } },
         { new: true }
       );
     }
@@ -212,7 +220,7 @@ exports.setResult = async request => {
     );
 
     // update score sets for tournament for players with no prediction made
-    const updatedScoreSetsAbsent = await ScoreHelper.update(
+    const updatedScoreSetsAbsent = await ScoreHelper.updateAbsent(
       playerIdsWithNoPredictionMade,
       tournament
     );

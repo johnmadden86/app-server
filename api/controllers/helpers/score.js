@@ -48,7 +48,7 @@ exports.update = (tournament, prediction) => {
         $inc: {
           pointsScored: prediction.weighting * prediction.correct,
           pointsUsed: prediction.weighting,
-          correctPredictions: prediction.correct * 1,
+          correctPredictions: prediction.correct,
           totalPredictions: 1
         }
       }
@@ -58,10 +58,10 @@ exports.update = (tournament, prediction) => {
   }
 };
 
-exports.updateAbsent = async (players, tournament) => {
+exports.updateAbsent = (players, tournament) => {
   try {
     // update score sets for tournament for players with no prediction made
-    return await Score.updateMany(
+    return Score.updateMany(
       { player: players, tournament },
       // pop takes out last (largest) number, sorted previously
       { $pop: { weightingsRemaining: 1 } }
