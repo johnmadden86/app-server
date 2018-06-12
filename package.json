@@ -23,7 +23,7 @@
     "joi": "^13.3.0",
     "jsonwebtoken": "^8.2.2",
     "mongoose": "^5.1.3",
-    "mongoose-seed": "^0.4.1",
+    "mongoose-seeder": "^1.2.1",
     "require.all": "^2.0.4"
   },
   "repository": "https://github.com/johnmadden86/app-server.git",

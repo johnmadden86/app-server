@@ -5,9 +5,9 @@ const playerSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  lastName: String,
-  email: String,
-  password: String
+  lastName: String
+  // email: String,
+  // password: String
 });
 
 module.exports = mongoose.model('Player', playerSchema);

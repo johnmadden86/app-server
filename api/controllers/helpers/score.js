@@ -51,7 +51,29 @@ exports.update = (tournament, prediction) => {
           correctPredictions: prediction.correct,
           totalPredictions: 1
         }
-      }
+      },
+      { new: true }
+    );
+  } catch (e) {
+    return Boom.badImplementation(`error updating scores: ${e}`);
+  }
+};
+
+exports.create = (tournament, player, weightingsRemaining) => {
+  try {
+    return Score.findOneAndUpdate(
+      { player, tournament },
+      {
+        $setOnInsert: {
+          weightingsRemaining,
+          weightingsUsed: [],
+          pointsScored: 0,
+          pointsUsed: 0,
+          correctPredictions: 0,
+          totalPredictions: 0
+        }
+      },
+      { upsert: true, new: true }
     );
   } catch (e) {
     return Boom.badImplementation(`error updating scores: ${e}`);

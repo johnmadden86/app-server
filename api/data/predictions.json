@@ -1,0 +1,14 @@
+[
+  {
+    "player": "name",
+    "predictions": {
+      "group": [
+        {
+          "team": "URU",
+          "weighting": 24
+        }
+      ]
+    }
+  },
+  {}
+]

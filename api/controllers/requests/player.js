@@ -34,6 +34,26 @@ exports.create = async request => {
   }
 };
 
+exports.createMany = async () => {
+  try {
+    // eslint-disable-next-line global-require
+    const playerNames = require('../../data/players');
+    const players = [];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const fullName of playerNames) {
+      const name = fullName.split(' ');
+      const player = {
+        firstName: name[0],
+        lastName: name[1]
+      };
+      players.push(player);
+    }
+    return Player.collection.insert(players);
+  } catch (e) {
+    return Boom.badImplementation(`error creating players: ${e}`);
+  }
+};
+
 exports.retrieveOne = request => {
   try {
     return Player.findOne({ _id: request.params.id });

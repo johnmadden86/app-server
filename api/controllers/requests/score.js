@@ -1,7 +1,9 @@
 const Boom = require('boom');
 const TournamentHelper = require('../helpers/tournament');
+const ScoreHelper = require('../helpers/score');
 
 const Score = require('../../models/score-model');
+const Player = require('../../models/player-model');
 
 const Utils = require('./auth-controller');
 
@@ -28,6 +30,30 @@ exports.createOrRetrieve = async request => {
       },
       { upsert: true, new: true }
     );
+  } catch (e) {
+    return Boom.badImplementation(`error getting scores: ${e}`);
+  }
+};
+
+exports.createOrRetrieveForAll = async () => {
+  try {
+    const players = await Player.find();
+    const tournament = await TournamentHelper.retrieveOneByName(
+      'World Cup 2018'
+    );
+    const weightingsRemaining = [];
+    for (let i = 0; i < tournament.events; i += 1) {
+      weightingsRemaining.push(i + 1);
+    }
+    const scores = [];
+    await Promise.all(
+      players.map(async player => {
+        scores.push(
+          await ScoreHelper.create(tournament._id, player, weightingsRemaining)
+        );
+      })
+    );
+    return scores;
   } catch (e) {
     return Boom.badImplementation(`error getting scores: ${e}`);
   }

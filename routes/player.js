@@ -20,13 +20,18 @@ module.exports = [
   },
   {
     method: 'POST',
-    path: '/players',
+    path: '/player',
     handler: PlayerController.create,
     options: {
       auth: false
 
       // validate: Validate.signup
     }
+  },
+  {
+    method: 'POST',
+    path: '/players',
+    handler: PlayerController.createMany
   },
   {
     method: 'GET',

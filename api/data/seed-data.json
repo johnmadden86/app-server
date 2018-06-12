@@ -1,0 +1,61 @@
+{
+  "players": {
+    "_model": "Player",
+    "david": {
+      "firstName": "David",
+      "lastName": "de Gea",
+      "email": "david@manutd.es",
+      "password": "Number1!"
+    }
+  },
+  "categories": {
+    "_model": "Category",
+    "international": {
+      "name": "Soccer - International"
+    }
+  },
+  "teams": {
+    "_model": "Team",
+    "ireland":
+    {
+      "name": "Ireland",
+      "shortName": "IRL",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Ireland.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1609/full/596_-ireland-primary-.png",
+      "category": "->categories.international"
+    },
+    "nIreland":
+    {
+      "name": "Northern Ireland",
+      "shortName": "NIR",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Northern_Ireland.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1605/full/5536_northern_ireland_-primary-2011.png",
+      "category": "->categories.international"
+    },
+    "scotland":
+    {
+      "name": "Scotland",
+      "shortName": "SCO",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Flag_of_Scotland.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1614/full/5102_scotland_-primary-2012.png",
+      "category": "->categories.international"
+    },
+    "wales":
+    {
+      "name": "Wales",
+      "shortName": "WAL",
+      "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Flag_of_Wales_2.svg",
+      "crestUrl": "http://content.sportslogos.net/logos/60/1623/full/we6t9kh3e0fbwojl1jxn.png",
+      "category": "->categories.international"
+    }
+  },
+  "tournaments": {
+    "_model": "Tournament",
+    "nations": {
+      "name": "Nations Cup",
+      "events": 4,
+      "logoUrl": "placeholder",
+      "category": "->categories.international"
+    }
+  }
+}
